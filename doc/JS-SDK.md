@@ -5,7 +5,7 @@
 如接入指南中介绍，先联系币威团队确定 “JS接口安全域名”。
 
 2. 引入 JS-SDK 文件
-在需要调用JS接口的页面引入如下JS文件，（支持https）：http://res.wx.qq.com/open/js/jweixin-1.2.0.js
+在需要调用JS接口的页面引入JSSDK文件。
 
 3. 通过 config 接口注入权限验证配置
 所有需要使用 JS-SDK 的页面必须先注入配置信息，否则将无法调用（同一个url仅需调用一次）
@@ -59,4 +59,4 @@ bcvWallet.requestPayment({
 	}
 });
 ```
-币威支付[开发文档](https://pay.weixin.qq.com/wiki/doc/api/index.html)
+币威支付[开发文档]()
