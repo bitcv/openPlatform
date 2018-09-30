@@ -99,7 +99,7 @@ https://open.bitcv.com/oauth2/accessToken?code=177d9b4c15c80f145f59b1b23eb71c60&
 |参数名|必选|类型|说明|
 |:----    |:---|:----- |-----   |
 |code |是  |string |填写第一步获取的code参数   |
-|appid |否  |string |第三方的唯一标识|
+|appid |是  |string |第三方的唯一标识|
 |secret |是  |string |第三方的appsecret|
 |grantType     |是  |string | 填写为authorization_code    |
 
@@ -137,7 +137,7 @@ https://open.bitcv.com/oauth2/refreshToken?appid=APPID&secret=SECRET&grantType=r
 |参数名|必选|类型|说明|
 |:----    |:---|:----- |-----   |
 |code |是  |string |填写第一步获取的code参数   |
-|appid |否  |string |第三方的唯一标识|
+|appid |是  |string |第三方的唯一标识|
 |secret |是  |string |第三方的appsecret|
 |grantType     |是  |string | 填写为authorization_code    |
 
@@ -219,7 +219,7 @@ https://open.bitcv.com/api/userinfo?accessToken=ACCESS_TOKEN
 |accessToken |是  |string |应用授权接口调用凭证   |
 |outTradeNo |是  |string |第三方应用订单号，商户内部保证唯一   |
 |tokenAmount     |是  |string | 交易数字货币数量    |
-|tokenPrice     |是 |string | 产品名称    |
+|tokenPrice     |是 |string | 币种单价    |
 |currency     |是  |string | 交易币种    |
 |sign     |是  |string | 签名    |
 
