@@ -82,7 +82,7 @@ https://open.bitcv.com/oauth2/authorize?redirectUri=http://example.com&appid=bcv
 
 返回说明
 
-如果用户同意授权，页面将跳转至 redirectUri/?code=CODE&state=STATE。
+如果参数正确，页面将跳转至 redirectUri/?code=CODE&state=STATE。
 
 **第二步：通过code换取网页授权accessToken**
 
