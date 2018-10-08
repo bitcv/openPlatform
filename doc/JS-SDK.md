@@ -1,41 +1,53 @@
 ## 使用币威  JS-SDK
-通过使用币威 JS-SDK，网页开发者可借助币威APP使用登录、支付等能力，未来还将开放更多如分享、扫一扫等功能。
-#### 使用流程
+通过使用币威 JS-SDK，网页开发者可借助币威APP使用支付、分享等能力，未来还将开放更多如分享、扫一扫等功能。
+
+### 使用流程
 1. 绑定域名
-如接入指南中介绍，先联系币威团队确定 “JS接口安全域名”。
+  如接入指南中介绍，先联系币威团队确定 “JS接口安全域名”。
 
 2. 引入 JS-SDK 文件
-在需要调用JS接口的页面引入JSSDK文件。
-
+  在需要调用JS接口的页面引入JSSDK文件，请在 [GitHub 中下载](https://github.com/bitcv/openPlatform/blob/master/JS-SDK)，引用后会在全局注册一个`bcvWallet`对象
+  - 直接引用方法： 
+  ``` javascript
+  <script type="text/javascript" src="path/to/bcvwallet.min.js"></script>
+  ```
+  - 通过模块加载方法加载
+  ``` javascript
+  import './path/to/bcvwallet.min'
+  ```
+  
 3. 通过 config 接口注入权限验证配置
-所有需要使用 JS-SDK 的页面必须先注入配置信息，否则将无法调用（同一个url仅需调用一次）
+  所有需要使用 JS-SDK 的页面必须先注入配置信息，否则将无法调用（同一个url仅需调用一次）
+
 ```javascript
 bcvWallet.config({
-    debug: false, // 开启调试模式时会在网页头部生成一系列log记录
-    appId: '', // 必填，第三方的唯一标识
-    timestamp: , // 必填，生成签名的时间戳
-    nonceStr: '', // 必填，生成签名的随机串
-    signature: '',// 必填，签名
-    jsApiList: [] // 非必填，目前可传入空数组，后续会加入权限判断校验
+  debug: false, // 开启调试模式时会在网页底部生成一系列log记录
+  appId: '', // 必填，第三方的唯一标识
+  timestamp: , // 必填，生成签名的时间戳
+  nonceStr: '', // 必填，生成签名的随机串
+  signature: '',// 必填，签名
+  jsApiList: [] // 非必填，目前可传入空数组，后续会加入权限判断校验
 });
 ```
-签名算法见后续签名算法章节
+[签名算法](../README.md)见币威开放平台首页
 
 4. 通过ready接口处理成功验证
 ```javascript
 bcvWallet.ready(function(){
-    // config信息验证后会执行ready方法，所有接口调用都必须在config接口获得结果之后，config是一个客户端的异步操作，所以如果需要在页面加载时就调用相关接口，则须把相关接口放在ready函数中调用来确保正确执行。对于用户触发时才调用的接口，则可以直接调用，不需要放在ready函数中。
+  // config信息验证后会执行ready方法，所有接口调用都必须在config接口获得结果之后，config是一个客户端的异步操作，所以如果需要在页面加载时就调用相关接口，则须把相关接口放在ready函数中调用来确保正确执行。对于用户触发时才调用的接口，则可以直接调用，不需要放在ready函数中。
 });
 ```
 
 5. 通过error接口处理失败验证
 ```javascript
 bcvWallet.error(function(res){
-    // config信息验证失败会执行error函数，如签名过期导致验证失败，具体错误信息在返回的res参数中查看。
+  // config信息验证失败会执行error函数，如签名过期导致验证失败，具体错误信息在返回的res参数中查看。
 });
 ```
 
-#### 接口调用说明
+
+### 接口调用说明
+
 所有接口通过 bcvWallet 对象来调用，参数是一个对象，除了每个接口本身需要传的参数之外，还有以下通用参数：
 1. success：接口调用成功时执行的回调函数。
 2. fail：接口调用失败时执行的回调函数。
@@ -48,15 +60,49 @@ bcvWallet.error(function(res){
 - 调用失败时：errcode: 1或具体状态码（为大于等于1的正整数）, errmsg: 其值为具体错误信息, data 为空
 
 
-#### 调用币威支付接口
+### 币威支付接口 requestPayment
 ```javascript
 bcvWallet.requestPayment({
-    accessToken: '', // 必填，应用授权接口调用凭证
-    tradeNo: '', // 必填，开放平台订唯一单号
-    requestTime: '', // 请求时间
-	success: function (res) {
-		// 支付成功后的回调函数
-	}
+  accessToken: '', // 必填，应用授权接口调用凭证
+  tradeNo: '', // 必填，开放平台订唯一单号
+  requestTime: '', // 请求时间
+  success: function (res) {
+    // 支付成功后的回调函数
+  }
 });
 ```
-币威支付[开发文档]()
+币威支付[开发文档](./otcOrder.md)
+
+### 分享接口 shareWechat
+集成了分享到微信聊天，微信朋友圈，复制分享内容的功能，目前分享有如下两种形式，通过 type 字段控制：
+1. link：网页链接形式，分享时包含分享到微信聊天，微信朋友圈和复制按钮，用户可以选择复制分享的内容
+2. screenshot：截图分享，APP 将截取整个当前网页为图片进行分享，分享时包含分享到微信聊天，微信朋友圈和下载按钮，用户可以选择将图片下载下来
+
+分享 link 的示例如下：
+```javascript
+bcvWallet.shareWechat({
+  type: 'link',
+  title: '', // 非必填，分享标题（如果没有，自动调用网页title）
+  thumb: '', // 非必填，分享缩略图
+  desc: '', // 非必填，分享描述
+  url: '', // 非必填，分享链接（如果没有，默认使用当前网页链接）
+  textCopy: '', // 非必填，可以复制的文案，用户可以点击按钮复制该文案
+  success: function (res) {
+    // 分享成功（包括复制成功）后的回调函数
+  }
+});
+```
+分享 screenshot 的示例如下：
+```javascript
+bcvWallet.shareWechat({
+  type: 'screenshot',
+  success: function (res) {
+    // 分享成功（包括下载成功）后的回调函数
+  }
+});
+```
+
+**备注**
+
+以上功能为币威钱包简体中文版本功能，在币威钱包海外版本（繁体版、英文版）中，会根据当地用户的使用习惯替换为分享到 Line、分享到 Facebook 等功能，但是SDK 调用的方法及参数不变。
+
