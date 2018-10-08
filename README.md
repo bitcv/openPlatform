@@ -77,7 +77,7 @@ https://open.bitcv.com/oauth2/authorize?redirectUri=http://example.com&appid=bcv
 |appid |是  |string |公众号的唯一标识|
 |responseType |是  |string |返回类型，请填写code   |
 |redirectUri |是  |string |授权后重定向的回调链接地址， 请使用 urlEncode 对链接进行处理|
-|scope     |是  |string | 应用授权作用域，请填写snsapi_userinfo    |
+|scope     |是  |string | 应用授权作用域，请填写userinfo    |
 |state |否  |string |重定向后会带上state参数，开发者可以填写a-zA-Z0-9的参数值，最多128字节|
 
 返回说明
