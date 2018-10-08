@@ -101,7 +101,7 @@ https://open.bitcv.com/oauth2/accessToken?code=177d9b4c15c80f145f59b1b23eb71c60&
 |code |是  |string |填写第一步获取的code参数   |
 |appid |是  |string |第三方的唯一标识|
 |secret |是  |string |第三方的appsecret|
-|grantType     |是  |string | 填写为authorization_code    |
+|grantType     |是  |string | 填写为authorizationCode    |
 
 返回说明
 
@@ -139,7 +139,7 @@ https://open.bitcv.com/oauth2/refreshToken?appid=APPID&secret=SECRET&grantType=r
 |code |是  |string |填写第一步获取的code参数   |
 |appid |是  |string |第三方的唯一标识|
 |secret |是  |string |第三方的appsecret|
-|grantType     |是  |string | 填写为authorization_code    |
+|grantType     |是  |string | 填写为refreshToken    |
 
 返回说明
 
