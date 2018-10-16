@@ -62,7 +62,7 @@ appid=2088002007018916&out_trade_no=BW96511872899679&price=32&quantity=1&return_
 ### [OTC 订单相关](./doc/otcOrder.md)
 
 
-### [币威  APP-SDK 文档](详细开发文档./doc/SDK.md)
+### [币威  APP-SDK 文档](./doc/SDK.md)
 通过嵌入币威 APP-SDK，项目方App无需开发任何和区块链相关的代码，便拥有了钱包的存储、转账等所有基本功能。
 1、SDK支持全币种，币威钱包支持的币种将会自动体现在SDK中。
 2、SDK主要功能：转账和收款
