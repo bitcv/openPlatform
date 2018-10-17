@@ -5,7 +5,7 @@
 2、iPhone设备
 
 ### 获取SDK
-下载地址:
+下载地址:https://github.com/bitcv/iOS-BitcvWalletSDK
 
 ### 导入SDK
 BitcvWalletSDK.framework、BitcvWallet.bundle拖入到工程中即可。
