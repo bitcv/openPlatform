@@ -14,6 +14,7 @@
 八、 退出登录接口	
 九、 获取SDK版本号接口	
 十、 是否开启混淆	
+十一、进入Demo
 
 
 
@@ -117,3 +118,7 @@ BvSdkApplication.getApplication().BvVersion();
 如果项目开启混淆
 minifyEnabled true
 请将demo中proguard-rules.pro文件代码全部复制至项目中即可
+
+
+###十一、进入Demo
+[Android-SDK 使用文档](bitcv/Android-BitcvWalletSDK)
