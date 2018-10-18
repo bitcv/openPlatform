@@ -34,5 +34,5 @@
 
 ### iOS、Android接口
 1. [iOS-SDK 使用文档](./iOS-SDK.md)
-2. [Android-SDK 使用文档](./Android-SDK.md)
+2. [Android-SDK 使用文档](https://github.com/bitcv/Android-BitcvWalletSDK)
 
