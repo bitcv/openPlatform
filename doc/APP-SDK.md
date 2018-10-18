@@ -1,4 +1,4 @@
-## 币威APP-SDK集成文档
+﻿## 币威APP-SDK集成文档
 通过嵌入币威 APP-SDK，项目方App无需开发任何和区块链相关的代码，便拥有了钱包的收款、转账、查询交易记录等所有基本功能。
 
 ### 用户使用流程
@@ -34,3 +34,5 @@
 
 ### iOS、Android接口
 1. [iOS-SDK 使用文档](./iOS-SDK.md)
+2. [Android-SDK 使用文档](./Android-SDK.md)
+
