@@ -64,7 +64,7 @@ https://open.bitcv.com/oauth2/accessToken?code=177d9b4c15c80f145f59b1b23eb71c60&
 |参数名|说明|
 |:----    |-----   |
 |accessToken |网页授权接口调用凭证   |
-|refreshToken  |用户刷新accessToken|
+|refreshToken  |用户刷新accessToken所需的凭证，有效期30天|
 |expiresIn |accessToken接口调用凭证超时时间，单位（秒）|
 |openId  | 	用户唯一标识    |
 
@@ -88,10 +88,10 @@ https://open.bitcv.com/oauth2/refreshToken?appid=APPID&secret=SECRET&grantType=r
 
 |参数名|必选|类型|说明|
 |:----    |:---|:----- |-----   |
-|code |是  |string |填写第一步获取的code参数   |
 |appid |是  |string |第三方的唯一标识|
 |secret |是  |string |第三方的appsecret|
 |grantType     |是  |string | 填写为refreshToken    |
+|refreshToken |是  |string |获取accessToken接口返回的|refreshToken   |
 
 **返回说明**
 
@@ -108,7 +108,7 @@ https://open.bitcv.com/oauth2/refreshToken?appid=APPID&secret=SECRET&grantType=r
 |参数名|说明|
 |:----    |-----   |
 |accessToken |网页授权接口调用凭证   |
-|refreshToken  |用户刷新accessToken|
+|refreshToken  |用户刷新accessToken所需的凭证|
 |expiresIn |accessToken接口调用凭证超时时间，单位（秒）|
 |openId  | 	用户唯一标识    |
 
