@@ -91,7 +91,7 @@ https://open.bitcv.com/oauth2/refreshToken?appid=APPID&secret=SECRET&grantType=r
 |appid |是  |string |第三方的唯一标识|
 |secret |是  |string |第三方的appsecret|
 |grantType     |是  |string | 填写为refreshToken    |
-|refreshToken |是  |string |获取accessToken接口返回的|refreshToken   |
+|refreshToken |是  |string |获取accessToken接口返回的refreshToken   |
 
 **返回说明**
 

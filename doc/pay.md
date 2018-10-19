@@ -42,11 +42,11 @@
 |tradeNo |string   |开放平台订唯一单号  |
 
 
-###交易结果通知
+### 交易结果通知
 
 用户完成订单支付后，系统异步回调通知地址，将最终的订单处理结果通知给外部系统，以POST请求发送。
 
-###通知请求签名机制
+### 通知请求签名机制
 
 在请求参数列表中，除去sign参数外，其他非空参数都要参与签名生成， 签名机制与[后端签名机制](./doc/sign.md) 所述相同
 
@@ -61,7 +61,7 @@
 |tradeTime     |是  |string | 订单交易时间    |
 
 
-###订单查询
+### 订单查询
 
 **请求URL：** 
 - ` https://open.bitcv.com/api/order `
@@ -166,6 +166,13 @@
 
 **tradeList参数支持手机号或openid：** openid|mobile^currency^totalAmount~
 
+|参数名|类型|说明|
+|:-----  |:-----|-----                           |
+|openid |string   |接受转账用户在开放平台唯一标识  |
+|mobile |string   |接受转账用户的手机号  |
+|currency |string   |支付币种  |
+|totalAmount |string   |订单金额  |
+
  **openid参数示例**
  070dbc07002226b2^BCV^19.2~5966c7bdacaa47b9bf59ca85144a8c47^ETH^3.4
 
@@ -173,9 +180,4 @@
  13801088888^BCV^19.2~13901099999^ETH^3.4
 
 
-|参数名|类型|说明|
-|:-----  |:-----|-----                           |
-|openid |string   |接受转账用户在开放平台唯一标识  |
-|mobile |string   |接受转账用户的手机号  |
-|currency |string   |支付币种  |
-|totalAmount |string   |订单金额  |
+
