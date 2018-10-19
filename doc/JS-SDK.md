@@ -1,12 +1,15 @@
 ## 使用币威  JS-SDK
 通过使用币威 JS-SDK，网页开发者可借助币威APP使用支付、分享等能力，未来还将开放更多如扫一扫、获取地理位置、图像、音视频等功能。
 
+此文档面向网页开发者介绍币威 JS-SDK 如何使用及相关注意事项。
+
 ### 使用流程
-1. 绑定域名
-  如接入指南中介绍，先联系币威团队确定 “JS接口安全域名”。
+1. 开通开发权限，绑定域名
+  如开放平台首页接入流程中介绍，先联系币威团队开通开发权限，并配置 “JS接口安全域名”，开发者只能在其对应 JS 接口安全域名的网页中使用 JS-SDK 的相关功能。
 
 2. 引入 JS-SDK 文件
-  在需要调用JS接口的页面引入JSSDK文件，请在 [GitHub 中下载](https://github.com/bitcv/openPlatform/blob/master/JS-SDK)，引用后会在全局注册一个`bcvWallet`对象
+  在需要调用JS接口的页面中引入 JS-SDK 文件，请在 [GitHub 中下载](https://github.com/bitcv/openPlatform/blob/master/JS-SDK)，引入方法如下，引入后会在全局注册一个`bcvWallet`对象
+
   - 直接引用方法： 
   ``` javascript
   <script type="text/javascript" src="path/to/bcvwallet.min.js"></script>
@@ -15,9 +18,12 @@
   ``` javascript
   import './path/to/bcvwallet.min'
   ```
-  
+
 3. 通过 config 接口注入权限验证配置
-  所有需要使用 JS-SDK 的页面必须先注入配置信息，否则将无法调用（同一个url仅需调用一次）
+  所有需要使用 JS-SDK 的页面必须先注入配置信息，否则将无法调用
+  
+  注意：同一个 url 仅需调用一次，对于变化 url 的 SPA 应用也同样仅需调用一次即可。目前 Android 客户端中如果重复调用会抛出异常。
+
 
 ```javascript
 bcvWallet.config({
@@ -29,7 +35,7 @@ bcvWallet.config({
   jsApiList: [] // 非必填，目前可传入空数组，后续会加入权限判断校验
 });
 ```
-[签名算法](../README.md)见币威开放平台首页
+[签名算法](../README.md)见币威开放平台首页中后端签名机制
 
 4. 通过ready接口处理成功验证
 ```javascript
@@ -41,7 +47,7 @@ bcvWallet.ready(function(){
 5. 通过error接口处理失败验证
 ```javascript
 bcvWallet.error(function(res){
-  // config信息验证失败会执行error函数，如签名过期导致验证失败，具体错误信息在返回的res参数中查看。
+  // config信息验证失败会执行error函数，如签名过期导致验证失败，具体错误信息在返回的res参数中查看，具体参数格式见下文-接口调用说明。
 });
 ```
 
@@ -56,11 +62,12 @@ bcvWallet.error(function(res){
 
 以上几个函数都带有一个参数，类型为对象，有三个通用属性 errcode、errmsg、data，其值格式如下：
 - 调用成功时：errcode: 0, errmsg: 'success', data为具体接口返回的数据
-- 用户取消时：errcode: -1, errmsg: 'cancel' （如有具体取消原因，如安卓没有弹窗权限导致调用不起支付，会返回如下格式 cancel: permissions compatibility）, data 为空
+- 用户取消时：errcode: -1, errmsg: 'cancel', data 为空（如有具体取消原因，会在 'cancel' 后面加具体取消信息。如安卓没有弹窗权限导致调用不起支付，会返回如下格式 cancel: permissions compatibility）
 - 调用失败时：errcode: 1或具体状态码（为大于等于1的正整数）, errmsg: 其值为具体错误信息, data 为空
 
 
 ### 币威支付接口 requestPayment
+可以通过币威支付接口调起 币威APP 的客户端支付功能，用户输入密码，即可完成支付操作。目前支持多种 Token 做为支付币种。
 ```javascript
 bcvWallet.requestPayment({
   accessToken: '', // 必填，应用授权接口调用凭证
@@ -71,7 +78,7 @@ bcvWallet.requestPayment({
   }
 });
 ```
-币威支付[开发文档](./otcOrder.md)
+其中支付相关的凭证、单号信息等需要通过后端调用币威开放平台生成，具体详见：币威支付[开发文档](./otcOrder.md)
 
 ### 分享接口 shareWechat
 集成了分享到微信聊天，微信朋友圈，复制分享内容的功能，目前分享有如下两种形式，通过 type 字段控制：
@@ -103,6 +110,7 @@ bcvWallet.shareWechat({
 ```
 
 **备注**
+- 调用 config 进行配置是一个客户端的异步操作，时间长短会受到网络环境的影响，如果 config 接口还未返回ready 或 error 回调就调用其他接口，该接口会调用失败，在 Android 手机上可能会导致整个配置过程失效，因此建议开发者设置一个变量管理 config 配置的状态，在 config 调用成功之前，不允许用户直接触发其他接口的调用。（此问题将在下一个版本更新中修复）
+- 分享接口：上文介绍的分享接口功能为币威钱包简体中文版本功能，在币威钱包海外版本（繁体版、英文版）中，会根据当地用户的使用习惯替换为分享到 Line、分享到 Facebook 等功能，但是SDK 调用的方法及参数不变。
 
-以上功能为币威钱包简体中文版本功能，在币威钱包海外版本（繁体版、英文版）中，会根据当地用户的使用习惯替换为分享到 Line、分享到 Facebook 等功能，但是SDK 调用的方法及参数不变。
-
+*未来还将开放更多功能，敬请期待*
