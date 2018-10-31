@@ -7,7 +7,7 @@ module.exports = {
   entry: './src/index.js',
   output: {
     path: path.resolve(__dirname, '../dist'),
-    filename: 'bcvwallet.js',
+    filename: 'bcvwallet.min.js',
     library: 'bcvWallet',
     libraryTarget: 'umd'
   },

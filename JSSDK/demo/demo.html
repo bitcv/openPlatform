@@ -68,24 +68,13 @@
   <section class="ctn">
     <img src="./assets/img1.jpg" alt="">
     <img src="./assets/img2.jpg" alt="">
-    <div><a class="share" href="javascript:;" onclick="testOpenUrlScheme('alipays://platformapi/startapp?saId=10000007&qrcode=HTTPS%3A%2F%2FQR.ALIPAY.COM%2FFKX045642YJ71YSZYNX005', 'outside')">SDK跳转支付宝</a></div>
-    <div><a class="share" href="javascript:;" onclick="testOpenUrlScheme('weixin://', 'outside')">SDK跳转微信</a></div>
-    <div><a class="share" href="javascript:;" onclick="testOpenUrl('weixin://')">直接跳转微信</a></div>
-    <div><a class="share" href="javascript:;" onclick="testOpenUrl('alipays://platformapi/startapp?saId=10000007&qrcode=HTTPS%3A%2F%2FQR.ALIPAY.COM%2FFKX045642YJ71YSZYNX005')">直接跳转支付宝转账</a></div>
-    <div><a class="share" href="javascript:;" onclick="testOpenUrlScheme('bw://trantoken', 'inside')">转账</a></div>
-    <div><a class="share" href="javascript:;" onclick="testOpenUrlScheme('bw://userwalletlist', 'inside')">收款</a></div>
-    <div><a class="share" href="javascript:;" onclick="testOpenUrlScheme('bw://depo', 'inside')">余币宝</a></div>
-    <div><a class="share" href="javascript:;" onclick="testOpenUrlScheme('bw://redpack', 'inside')">发糖包</a></div>
-    <div><a class="share" href="javascript:;" onclick="testOpenUrlScheme('bw://kyc', 'inside')">KYC</a></div>
-    <div><a class="share" href="javascript:;" onclick="testOpenUrlScheme('bw://siginin', 'inside')">登录</a></div>
-    <div><a class="share" href="tel:+86 13071163773">拨打电话</a></div>
   </section>
   <footer class="footer">
     <a class="share" href="javascript:;" onclick="handleShare()">SHARE</a>
     <a class="buy" href="javascript:;" onclick="handlePay()">BUY</a>
   </footer>
 
-<script type="text/javascript" src="/bcvwallet.js"></script>
+<script type="text/javascript" src="./bcvwallet.min.js"></script>
 
 <!-- 项目并不依赖 jQuery，这里只是作为请求数据使用 -->
 <script type="text/javascript" src="./assets/jquery-3.3.1.min.js"></script>
@@ -149,20 +138,6 @@ function handlePay () {
         alert('支付成功')
       }
     })
-  })
-}
-
-// test
-function testOpenUrl (url) {
-  window.location.href = url
-}
-function testOpenUrlScheme (url, type) {
-  bcvWallet.openUrlScheme({
-    url: url,
-    type: type,
-    success: function (res) {
-      alert('打开成功')
-    }
   })
 }
 </script>
