@@ -115,7 +115,7 @@ function handleShare () {
     title: '这里是分享标题', // 非必填，分享标题（如果没有，自动调用网页title）
     thumb: 'http://p8k1ocuzy.bkt.clouddn.com/alipayCode_1539691504259_8519.png', // 非必填，分享缩略图
     desc: '这里是分享描述内容', // 非必填，分享描述
-    url: 'http://sdkdemo.bitcv.com', // 非必填，分享链接（如果没有，默认使用当前网页链接）
+    url: window.location.href, // 非必填，分享链接（如果没有，默认使用当前网页链接）
     textCopy: '用于复制的文案', // 非必填，可以复制的文案，用户可以点击按钮复制该文案
     success: function (res) {
       // 分享成功（包括复制成功）后的回调函数
