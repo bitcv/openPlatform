@@ -7,9 +7,8 @@ session_start();
 $openPlatformApi = new OpenPlatformAPi();
 $redirectUrl = OpenPlatformConfig::REDIRECTURL;
 $appId = OpenPlatformConfig::APPID;
-$token = 'a5bba3b9bd36a723';
-$accessToken = '';
-
+$domain = OpenPlatformConfig::REDIRECTURL;
+$token = '';
 // 获取开放平台的配置
 $url = $_SERVER['REQUEST_URI'];
 if (strpos($url, 'getConfig')) {
@@ -17,36 +16,35 @@ if (strpos($url, 'getConfig')) {
     echo json_encode($configInfo);
     return;
 } else if (strpos($url, 'transferOrder')) {
-    $accessToken = $_SESSION['accessToken'];
-    $result = $openPlatformApi->transferOrder($accessToken);
-    echo $result;
-    return;
+    if (isset($_SESSION['hasAccessToken'])) {
+        if ($_SESSION['hasAccessToken']['expire'] > time()) {
+            $result = $openPlatformApi->transferOrder($_SESSION['hasAccessToken']['accessToken']);
+            echo $result;
+            return;
+        } else {
+            unset($_SESSION['hasAccessToken']);
+            header("location:http://sdkdemo.bitcv.cn/index.php");
+        }
+    }
 }
 
 // 使用 AppID 向开放平台换取 code .如果参数正确，页面将跳转至 redirectUri/?code=CODE&state=STATE。
 if (isset($_GET['code'])) {
-    $userInfo = $openPlatformApi::auth2Login($_GET['code']);
-    if(isset($userInfo) && $userInfo) {
-        $accessToken = $userInfo['accessToken'];
-        $_SESSION['accessToken'] = $accessToken;
+    if (!isset($_SESSION['accessToken'])) {
+        $userInfo = $openPlatformApi::auth2Login($_GET['code']);
+        if (isset($userInfo) && $userInfo) {
+            $session_data = array();
+            $session_data['expire'] = time() + 7200;
+            $session_data['accessToken'] = $userInfo['accessToken'];
+            $_SESSION['hasAccessToken'] = $session_data;
+            if ($_SESSION['hasAccessToken']['accessToken'] && $_SESSION['hasAccessToken']['expire'] > time()) {
+                header("location:http://sdkdemo.bitcv.com/demo.html");
+            }
+        }
+    } else {
+        header("location:http://sdkdemo.bitcv.com/demo.html");
     }
 } else {
     $result = $openPlatformApi::getAuthCode($redirectUrl, $appId, $token);
 }
-
-
-
-// 通过 code 换取网页授权 accessToken
-//$code = '23bd460615f0a25844f97a83f3467d16';
-//$userInfo = $openPlatformApi::auth2Login($code);
-//echo '<pre>';
-//print_r($userInfo);
-//echo '</pre>';
-
-// 刷新 accessToken
-/*$refreshToken = 'd1f79f22f881ca15433309e1f4de2d19';
-$openPlatformInfo = $openPlatformApi::refreshToken($refreshToken);
-echo '<pre>';
-print_r($openPlatformInfo);
-echo '</pre>';*/
 

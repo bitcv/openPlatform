@@ -14,5 +14,6 @@ class OpenPlatformConfig
     const APPID = 'b42126b2ed59f2cb';
     const APPSECRET = 'E48WxAXR0fqemw3uIVuVmauGCHjpgldn';
     const REDIRECTURL = 'http://sdkdemo.bitcv.com';
+//    const REDIRECTURL = 'http://temp.com';
     const DOMAIN = 'http://open.bitcv.com';
 }
