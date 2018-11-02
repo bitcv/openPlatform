@@ -86,7 +86,7 @@ var isBWConfigSuccess = false
 $.get('/index.php?api=getConfig', function (res) {
   // bcvWallet 初始化
   bcvWallet.config({
-    debug: true, // 开启调试模式时会在网页底部生成一系列log记录
+    debug: false, // 开启调试模式时会在网页底部生成一系列log记录
     appId: res.appId, // 必填，第三方的唯一标识
     timestamp: res.timestamp, // 必填，生成签名的时间戳
     nonceStr: res.nonceStr, // 必填，生成签名的随机串
