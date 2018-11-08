@@ -1,7 +1,7 @@
 {
   "name": "bcvWallet",
   "version": "1.1.0",
-  "description": "",
+  "description": "JSSDK for bitcvWallet app",
   "main": "dist/bcvwallet.min.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -9,8 +9,12 @@
     "build": "webpack --config config/webpack.build.conf.js",
     "deploy": "npm run build && rm -r ../BE-DEMO/php/demo && cp -r demo ../BE-DEMO/php && cp dist/bcvwallet.min.js ../BE-DEMO/php/demo"
   },
-  "author": "",
+  "author": "BitCapitalVendor",
   "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/bitcv/openPlatform"
+  },
   "dependencies": {},
   "devDependencies": {
     "@babel/core": "^7.1.2",
