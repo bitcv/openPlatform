@@ -1,6 +1,6 @@
 {
-  "name": "bcvWallet",
-  "version": "1.1.0",
+  "name": "bcvwallet",
+  "version": "1.1.1",
   "description": "JSSDK for bitcvWallet app",
   "main": "dist/bcvwallet.min.js",
   "scripts": {
@@ -9,6 +9,10 @@
     "build": "webpack --config config/webpack.build.conf.js",
     "deploy": "npm run build && rm -r ../BE-DEMO/php/demo && cp -r demo ../BE-DEMO/php && cp dist/bcvwallet.min.js ../BE-DEMO/php/demo"
   },
+  "keywords": [
+    "eth",
+    "bcv"
+  ],
   "author": "BitCapitalVendor",
   "license": "ISC",
   "repository": {
