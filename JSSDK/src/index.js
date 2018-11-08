@@ -1,4 +1,4 @@
-import { bwVer, apiNameMap, bwCfg } from './base'
+import { env, apiNameMap, bwCfg } from './base'
 import sdkLog from './sdkLog'
 import { setupWebViewJavascriptBridge, invokeCmd } from './utils'
 
@@ -14,7 +14,7 @@ let stateInfo = {
 
 // API
 bwAPI = {
-  appVersion: bwVer,
+  env,
   config (parm) {
     bwCfg.updateCfg(parm)
 

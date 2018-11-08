@@ -1,12 +1,13 @@
 {
   "name": "bcvWallet",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "",
   "main": "dist/bcvwallet.min.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "webpack-dev-server --progress --config config/webpack.dev.conf.js",
-    "build": "webpack --config config/webpack.build.conf.js && cp dist/bcvwallet.min.js demo/ && cp -r demo ../BE-DEMO/php"
+    "build": "webpack --config config/webpack.build.conf.js",
+    "deploy": "npm run build && rm -r ../BE-DEMO/php/demo && cp -r demo ../BE-DEMO/php && cp dist/bcvwallet.min.js ../BE-DEMO/php/demo"
   },
   "author": "",
   "license": "ISC",
