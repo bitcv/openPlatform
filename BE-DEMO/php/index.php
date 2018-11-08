@@ -38,11 +38,11 @@ if (isset($_GET['code'])) {
             $session_data['accessToken'] = $userInfo['accessToken'];
             $_SESSION['hasAccessToken'] = $session_data;
             if ($_SESSION['hasAccessToken']['accessToken'] && $_SESSION['hasAccessToken']['expire'] > time()) {
-                header("location:http://sdkdemo.bitcv.com/demo.html");
+                header("location:http://sdkdemo.bitcv.com/demo/demo.html");
             }
         }
     } else {
-        header("location:http://sdkdemo.bitcv.com/demo.html");
+        header("location:http://sdkdemo.bitcv.com/demo/demo.html");
     }
 } else {
     $result = $openPlatformApi::getAuthCode($redirectUrl, $appId, $token);
