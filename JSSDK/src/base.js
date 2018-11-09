@@ -1,7 +1,6 @@
 // base variable and method
-let nav = navigator.userAgent.toLowerCase() // navigator
-let bwEnv // bcvwallet env (ios || android || other)
-let bwVer // bcvwallet version
+let ua = navigator.userAgent.toLowerCase() // navigator
+let env = {}
 
 const apiNameMap = {
   config: 'config',
@@ -10,18 +9,25 @@ const apiNameMap = {
   openUrlScheme: 'openUrlScheme'
 }
 
-// init bwEnv
-if (nav.match(/bitcvwallet\/ios/i) == 'bitcvwallet/ios') {
-  bwEnv = 'ios'
-} else if (nav.match(/bitcvwallet\/android/i) == 'bitcvwallet/android') {
-  bwEnv = 'android'
+// platform info
+if (ua.indexOf('Android') > -1 || ua.indexOf('Adr') > -1) {
+  env.platform = 'android'
+} else if (ua.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/)) {
+  env.platform = 'ios'
 } else {
-  bwEnv = 'other'
+  env.platform = 'desktop'
 }
 
-// init bwVer
-let version = nav.match(/bitcvwallet\/(\d+\.\d+\.\d+)/) || nav.match(/bitcvwallet\/(\d+\.\d+)/)
-bwVer = version ? version[1] : ''
+// bitcvwallet info
+let mat = ua.match(/bitcvwallet\/(ios|android)\/(\d+\.\d+\.\d+)(\/lang\/(\w{1,}))?/)
+if (mat) {
+  env.isInBitcvApp = true
+  env.appPlatform = mat[1]
+  env.appVersion = mat[2]
+  env.appLanguage = mat[4] ? mat[4] : 'cn'
+} else {
+  env.isInBitcvApp = false
+}
 
 // config information
 let bwCfg = {
@@ -31,4 +37,4 @@ let bwCfg = {
   }
 }
 
-export default { nav, bwEnv, bwVer, apiNameMap, bwCfg }
+export default { ua, env, apiNameMap, bwCfg }

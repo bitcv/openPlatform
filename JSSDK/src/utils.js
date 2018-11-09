@@ -1,16 +1,16 @@
-import { bwEnv, bwCfg } from './base'
+import { env, bwCfg } from './base'
 import sdkLog from './sdkLog'
 
 /* global WebViewJavascriptBridge */
 // 注册初始化事件监听
 function setupWebViewJavascriptBridge (callback) {
-  if (bwEnv === 'android') {
+  if (env.isInBitcvApp && env.appPlatform === 'android') {
     // Android使用
     if (window.WebViewJavascriptBridge) { return callback(window.WebViewJavascriptBridge) }
     document.addEventListener('WebViewJavascriptBridgeReady', function () {
       callback(window.WebViewJavascriptBridge)
     }, false)
-  } else if (bwEnv === 'ios') {
+  } else if (env.isInBitcvApp && env.appPlatform === 'ios') {
     // iOS使用
     if (window.WebViewJavascriptBridge) { return callback(WebViewJavascriptBridge) }
     if (window.WVJBCallbacks) { return window.WVJBCallbacks.push(callback) }

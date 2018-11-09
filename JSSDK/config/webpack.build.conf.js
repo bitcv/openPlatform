@@ -9,7 +9,8 @@ module.exports = {
     path: path.resolve(__dirname, '../dist'),
     filename: 'bcvwallet.min.js',
     library: 'bcvWallet',
-    libraryTarget: 'umd'
+    libraryTarget: 'umd',
+    globalObject: 'this' // fixed (webpack default as 'window')
   },
   module: {
     rules: [
