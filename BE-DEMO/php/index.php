@@ -8,7 +8,7 @@ $openPlatformApi = new OpenPlatformAPi();
 $redirectUrl = OpenPlatformConfig::REDIRECTURL;
 $appId = OpenPlatformConfig::APPID;
 $domain = OpenPlatformConfig::REDIRECTURL;
-$token = '';
+//$token = '';
 // 获取开放平台的配置
 $url = $_SERVER['REQUEST_URI'];
 if (strpos($url, 'getConfig')) {
@@ -45,6 +45,6 @@ if (isset($_GET['code'])) {
         header("location:http://sdkdemo.bitcv.com/demo/demo.html");
     }
 } else {
-    $result = $openPlatformApi::getAuthCode($redirectUrl, $appId, $token);
+    $result = $openPlatformApi::getAuthCode($redirectUrl, $appId);
 }
 
