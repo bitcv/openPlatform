@@ -12,13 +12,12 @@ class OpenPlatformAPi
      * 获取 code
      * $redirecturl 必选，重定向 URL，
      * $appid appid 必选
-     * $token 第三方登录的 token
      * 如果参数正确，页面将跳转至 redirectUri/?code=CODE&state=STATE。
      * */
-    public static function getAuthCode ($redirecturl, $appid, $token)
+    public static function getAuthCode ($redirecturl, $appid)
     {
         $domain = OpenPlatformConfig::DOMAIN;
-        $url = "$domain/oauth2/authorize?redirectUri=$redirecturl&appid=$appid&responseType=code&scope=userinfo&state=STATE&token=$token";
+        $url = "$domain/oauth2/authorize?redirectUri=$redirecturl&appid=$appid&responseType=code&scope=userinfo&state=STATE";
         header("location:$url");
     }
 
