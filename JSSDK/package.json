@@ -1,0 +1,39 @@
+{
+  "name": "bcvwallet",
+  "version": "1.1.1",
+  "description": "JSSDK for bitcvWallet app",
+  "main": "dist/bcvwallet.min.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "webpack-dev-server --progress --config config/webpack.dev.conf.js",
+    "build": "webpack --config config/webpack.build.conf.js",
+    "deploy": "npm run build && rm -r ../BE-DEMO/php/demo && cp -r demo ../BE-DEMO/php && cp dist/bcvwallet.min.js ../BE-DEMO/php/demo"
+  },
+  "keywords": [
+    "eth",
+    "bcv"
+  ],
+  "author": "BitCapitalVendor",
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/bitcv/openPlatform"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "@babel/core": "^7.1.2",
+    "@babel/preset-env": "^7.1.0",
+    "babel-loader": "^8.0.4",
+    "babel-plugin-add-module-exports": "^1.0.0",
+    "eslint": "^5.7.0",
+    "eslint-config-standard": "^12.0.0",
+    "eslint-loader": "^2.1.1",
+    "eslint-plugin-import": "^2.14.0",
+    "eslint-plugin-node": "^7.0.1",
+    "eslint-plugin-promise": "^4.0.1",
+    "eslint-plugin-standard": "^4.0.0",
+    "webpack": "^4.23.1",
+    "webpack-cli": "^3.1.2",
+    "webpack-dev-server": "^3.1.10"
+  }
+}
