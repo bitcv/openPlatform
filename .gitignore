@@ -11,6 +11,6 @@ yarn-error.log*
 *.suo
 *.ntvs*
 *.njsproj
-*.sun
+*.sln
 
 _private*
