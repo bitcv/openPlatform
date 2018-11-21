@@ -771,38 +771,406 @@
 **请求URL：** 
 - ` https://www.bitcv.com/api/sdk/verifyGacode `
 
+**请求方式：**
+- POST 
+
+**参数：** 
+
+|参数名|必选|类型|说明|
+|:-----|:---|:---|----|
+|gaSecret|是|string|谷歌验证码密钥|
+|gaCode|是|int|谷歌验证码|
+|appKey|是|string|第三方应用唯一标识|
+|token|是|string|用户唯一标识|
+|sign|是|string|客户端签名|
+
+**返回示例**
+```JSON
+{
+    "errcode": 0,
+    "errmsg": "成功执行",
+}
+```
+**返回参数说明** 
+
+|参数名|类型|说明|
+|:-----|:---|----|
+
+**备注** 
+
 ### 获取谷歌验证码私钥
 **请求URL：** 
 - ` https://www.bitcv.com/api/sdk/getGaSecret `
+
+**请求方式：**
+- POST 
+
+**参数：** 
+
+|参数名|必选|类型|说明|
+|:-----|:---|:---|----|
+|appKey|是|string|第三方应用唯一标识|
+|token|是|string|用户唯一标识|
+|sign|是|string|客户端签名|
+
+**返回示例**
+```JSON
+{
+    "errcode": 0,
+    "errmsg": "成功执行",
+    "data": {
+        "gaSecret": "AdgEdbadgegDHdgK",
+        "gaQrcode": "BdgaAdgCdgssaAV",
+    }
+}
+```
+**返回参数说明** 
+
+|参数名|类型|说明|
+|:-----|:---|----|
+
+**备注** 
 
 ### 设置谷歌验证码私钥
 **请求URL：** 
 - ` https://www.bitcv.com/api/sdk/addGaSecret `
 
+**请求方式：**
+- POST 
+
+**参数：** 
+
+|参数名|必选|类型|说明|
+|:-----|:---|:---|----|
+|gaSecret|是|string|谷歌验证码私钥|
+|payVcode|是|int|短信验证码|
+|appKey|是|string|第三方应用唯一标识|
+|token|是|string|用户唯一标识|
+|sign|是|string|客户端签名|
+
+**返回示例**
+```JSON
+{
+    "errcode": 0,
+    "errmsg": "成功执行",
+}
+```
+**返回参数说明** 
+
+|参数名|类型|说明|
+|:-----|:---|----|
+
+**备注** 
+
 ### 获取转账记录列表
 **请求URL：** 
 - ` https://www.bitcv.com/api/sdk/getFinanceList `
+
+**请求方式：**
+- POST 
+
+**参数：** 
+
+|参数名|必选|类型|说明|
+|:-----|:---|:---|----|
+|tokenId|否|int|通证ID，不传则获取所有通证的交易信息|
+|perpage|是|int|每页返回数据数量|
+|pageno|是|int|页码，从1开始|
+|appKey|是|string|第三方应用唯一标识|
+|token|是|string|用户唯一标识|
+|sign|是|string|客户端签名|
+
+**返回示例**
+```JSON
+{
+    "errcode": 0,
+    "errmsg": "成功执行",
+    "data": {
+        "dataCount": 0,
+        "financeList": [
+            {
+                "id": 5343093,
+                "status": 2,
+                "type": 15,
+                "iconUrl": "https://www.bitcv.com/app_static/icon/finance_in_cn.png",
+                "title": "菠菜庄园",
+                "amount": "11.8200",
+                "amountStr": "+11.8200",
+                "tokenSymbol": "BCV",
+                "timeStr": "31分钟前",
+                "statusStr": "收取成功",
+                "processStr": ""
+            },
+        ]
+    }
+}
+```
+**返回参数说明** 
+
+|参数名|类型|说明|
+|:-----|:---|----|
+
+**备注** 
 
 ### 获取转账记录详情
 **请求URL：** 
 - ` https://www.bitcv.com/api/sdk/getFinanceDetail `
 
+**请求方式：**
+- POST 
+
+**参数：** 
+
+|参数名|必选|类型|说明|
+|:-----|:---|:---|----|
+|financeId|是|int|交易ID|
+|appKey|是|string|第三方应用唯一标识|
+|token|是|string|用户唯一标识|
+|sign|是|string|客户端签名|
+
+**返回示例**
+```JSON
+{
+    "errcode": 0,
+    "errmsg": "成功执行",
+    "data": {
+        "hasTag": 0,
+        "showTran": 0,
+        "addrTag": "",
+        "statusStr": "收取成功 ",
+        "status": 2,
+        "percentStr": "",
+        "amount": "11.8200",
+        "amountStr": "+11.8200",
+        "tokenSymbol": "BCV",
+        "tokenData": {
+            "logoUrl": "https://static.ucai.net/storage/image/logo/RRhDcW5lrxgNpzpsBxSRF5qxZ6vTAG07bA3Chdge.png",
+            "amount": "8602.1335",
+            "amountStr": "8,602.1335",
+            "price": "0.02",
+            "priceCNY": "0.02",
+            "priceStr": "0.02",
+            "value": "220.90",
+            "valueStr": "220.90",
+            "tokenId": 4,
+            "tokenSymbol": "BCV"
+        },
+        "hasProcess": 0,
+        "detail": [
+            [
+                {
+                    "label": "交易类型",
+                    "text": "收入",
+                    "canCopy": 0
+                }
+            ],
+            [
+                {
+                    "label": "完成时间",
+                    "text": "2018-11-21 10:19:52",
+                    "canCopy": 0
+                },
+                {
+                    "label": "备注",
+                    "text": "菠菜庄园",
+                    "canCopy": 0
+                }
+            ]
+        ]
+    }
+}
+```
+**返回参数说明** 
+
+|参数名|类型|说明|
+|:-----|:---|----|
+
+**备注** 
+
 ### 获取常用地址列表
 **请求URL：** 
 - ` https://www.bitcv.com/api/sdk/getTranAddrList `
+
+**请求方式：**
+- POST 
+
+**参数：** 
+
+|参数名|必选|类型|说明|
+|:-----|:---|:---|----|
+|appKey|是|string|第三方应用唯一标识|
+|token|是|string|用户唯一标识|
+|sign|是|string|客户端签名|
+
+**返回示例**
+```JSON
+{
+    "errcode": 0,
+    "errmsg": "成功执行",
+    "data": {
+        "dataList": [
+            {
+                "symbol": "ETH",
+                "addrList": [
+                    {
+                        "addrId": 7,
+                        "tag": "主钱包",
+                        "addr": "0x366199b0377ba868bb7333de09a4ddeb671c74a4"
+                    },
+                    {
+                        "addrId": 497,
+                        "tag": "哈喽",
+                        "addr": "0x449da27d3b94ca18cb20cc76a477b71077257b54"
+                    }
+                ]
+            },
+            {
+                "symbol": "BTC",
+                "addrList": []
+            },
+        ]
+    }
+}```
+**返回参数说明** 
+
+|参数名|类型|说明|
+|:-----|:---|----|
+
+**备注** 
 
 ### 获取常用地址
 **请求URL：** 
 - ` https://www.bitcv.com/api/sdk/getTranAddr `
 
+**请求方式：**
+- POST 
+
+**参数：** 
+
+|参数名|必选|类型|说明|
+|:-----|:---|:---|----|
+|tokenId|是|int|通证ID|
+|appKey|是|string|第三方应用唯一标识|
+|token|是|string|用户唯一标识|
+|sign|是|string|客户端签名|
+
+**返回示例**
+```JSON
+{
+    "errcode": 0,
+    "errmsg": "成功执行",
+    "data": {
+        "dataCount": 2,
+        "addrList": [
+            {
+                "addrId": 7,
+                "tag": "主钱包",
+                "addr": "0x366199b0377ba868bb7333de09a4ddeb671c74a4",
+                "addrTag": "",
+                "tokenId": 4,
+                "tokenSymbol": "BCV",
+                "hasTag": 0,
+                "protocolArr": "[1]"
+            },
+            {
+                "addrId": 497,
+                "tag": "哈喽",
+                "addr": "0x449da27d3b94ca18cb20cc76a477b71077257b54",
+                "addrTag": "",
+                "tokenId": 4,
+                "tokenSymbol": "BCV",
+                "hasTag": 0,
+                "protocolArr": "[1]"
+            }
+        ]
+    }
+}
+```
+**返回参数说明** 
+
+|参数名|类型|说明|
+|:-----|:---|----|
+
+**备注** 
+
 ### 添加常用地址
 **请求URL：** 
 - ` https://www.bitcv.com/api/sdk/addTranAddr `
+
+**请求方式：**
+- POST 
+
+**参数：** 
+
+|参数名|必选|类型|说明|
+|:-----|:---|:---|----|
+|tokenId|是|int|通证ID|
+|addr|是|string|钱包地址|
+|tag|是|string|备注|
+|addrTag|是|string|地址标签|
+|appKey|是|string|第三方应用唯一标识|
+|token|是|string|用户唯一标识|
+|sign|是|string|客户端签名|
+
+**返回示例**
+```JSON
+{
+    "errcode": 0,
+    "errmsg": "成功执行",
+}
+
+**备注** 
 
 ### 修改常用地址
 **请求URL：** 
 - ` https://www.bitcv.com/api/sdk/updTranAddr `
 
+**请求方式：**
+- POST 
+
+**参数：** 
+
+|参数名|必选|类型|说明|
+|:-----|:---|:---|----|
+|addrId|是|int|地址ID|
+|addr|是|string|钱包地址|
+|tag|是|string|备注|
+|addrTag|是|string|地址标签|
+|appKey|是|string|第三方应用唯一标识|
+|token|是|string|用户唯一标识|
+|sign|是|string|客户端签名|
+
+**返回示例**
+```JSON
+{
+    "errcode": 0,
+    "errmsg": "成功执行",
+}
+```
+
+**备注** 
+
 ### 删除常用地址
 **请求URL：** 
 - ` https://www.bitcv.com/api/sdk/delTranAddr `
+
+**请求方式：**
+- POST 
+
+**参数：** 
+
+|参数名|必选|类型|说明|
+|:-----|:---|:---|----|
+|addrId|是|int|地址ID|
+|appKey|是|string|第三方应用唯一标识|
+|token|是|string|用户唯一标识|
+|sign|是|string|客户端签名|
+
+**返回示例**
+```JSON
+{
+    "errcode": 0,
+    "errmsg": "成功执行",
+}
+
+**备注** 
