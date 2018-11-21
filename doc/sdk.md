@@ -541,6 +541,16 @@
 
 |参数名|类型|说明|
 |:-----|:---|----|
+|addr|string|钱包地址|
+|addrTag|string|地址标签|
+|hasTag|int|是否需要地址标签：0不需要，1需要|
+|forceTag|int|是否必须输入地址标签: 0不是，1是|
+|protocol|string|通证类型|
+|protocolArr|json|地址支持的通证类型json|
+|inPlat|string|是否平台内转账：0不是，1是|
+|amount|float|转账数量|
+|amountStr|string|转账数量（带千分位分隔符）|
+|tokenData|dict|通证信息
 
 **备注** 
 
@@ -568,10 +578,10 @@
     "data": {
         "addr": "0x7593817f4815aeb2d473468d5e93e56d9aad58e1",
         "addrTag": "",
-        "protocol": 1,
-        "protocolArr": "[1]",
         "hasTag": 0,
         "forceTag": 0,
+        "protocol": 1,
+        "protocolArr": "[1]",
         "inPlat": 1,
         "amount": "0.0000",
         "amountStr": "0.0000",
@@ -583,6 +593,16 @@
 
 |参数名|类型|说明|
 |:-----|:---|----|
+|addr|string|钱包地址|
+|addrTag|string|地址标签|
+|hasTag|int|是否需要地址标签：0不需要，1需要|
+|forceTag|int|是否必须输入地址标签: 0不是，1是|
+|protocol|string|通证类型|
+|protocolArr|json|地址支持的通证类型json|
+|inPlat|string|是否平台内转账：0不是，1是|
+|amount|float|转账数量|
+|amountStr|string|转账数量（带千分位分隔符）|
+|tokenData|dict|通证信息
 
 **备注** 
 
@@ -607,18 +627,17 @@
     "errcode": 0,
     "errmsg": "成功执行",
     "data": {
-        "tokenList": [
+        "dataList": [
             {
-                "token_id": 4,
-                "token_symbol": "BCV",
+                "tokenId": 4,
+                "tokenSymbol": "BCV",
+                "logoUrl": "https://static.ucai.net/storage/image/logo/RRhDcW5lrxgNpzpsBxSRF5qxZ6vTAG07bA3Chdge.png",
+                "amount": "0.0000",
+                "amountStr": "0.0000",
+                "price": "0.10",
+                "priceStr": "0.10",
                 "value": "0.00",
                 "valueStr": "0.00",
-                "priceCNY": "0.10",
-                "priceStr": "0.10",
-                "logo_url": "https://static.ucai.net/storage/image/logo/RRhDcW5lrxgNpzpsBxSRF5qxZ6vTAG07bA3Chdge.png",
-                "price": "0.10",
-                "amount": "0.0000",
-                "amountStr": "0.0000"
             },
         ]
     }
@@ -628,6 +647,15 @@
 
 |参数名|类型|说明|
 |:-----|:---|----|
+|tokenId|int|通证ID|
+|tokenSymbol|string|通证符号|
+|logoUrl|string|通证logo链接|
+|amount|float|通证数量|
+|amountStr|string|通证数量（带千分位分隔符）|
+|price|float|通证单价|
+|priceStr|string|通证单价（带千分位分隔符）|
+|value|float|通证价值|
+|valueStr|string|通证价值（带千分位分隔符）|
 
 **备注** 
 
@@ -687,6 +715,25 @@
 
 |参数名|类型|说明|
 |:-----|:---|----|
+|tokenProtocol|int|通证类别|
+|feeTokenId|int|服务费通着ID|
+|feeSymbol|string|服务费符号|
+|feeAmount|float|所需手续费数量|
+|feeAmount|string|所需手续费数量（带千位分隔符）|
+|feeTokenAmount|float|用户持有手续费token的剩余数量|
+|feeTokenAmountStr|string|用户持有手续费token的剩余数量（带千位分隔符）|
+|isFree|int|是否免服务费|
+|userData|dict|当前用户信息|
+|hasPaywd|int|是否设置了支付密码|
+|hasGacode|int|是否设置了谷歌验证码|
+|forceGacode|int|是否必须输入谷歌验证码|
+|remainAmount|float|用户持有转账token的数量|
+|maxAmountStr|string|每日免谷歌验证码转账限额|
+|feeDesc|array|服务费说明|
+|hasTag|int|是否有地址标签|
+|inPlat|int|是否平台内转账|
+|forceTag|int|是否必须输入地址标签|
+|tagIsOk|int|地址标签是否正确|
 
 **备注** 
 
@@ -725,6 +772,7 @@
 
 |参数名|类型|说明|
 |:-----|:---|----|
+|financeId|int|交易明细ID|
 
 **备注** 
 
@@ -750,11 +798,6 @@
     "errmsg": "成功执行",
 }
 ```
-**返回参数说明** 
-
-|参数名|类型|说明|
-|:-----|:---|----|
-
 **备注** 
 
 ### 验证支付密码
@@ -779,11 +822,6 @@
     "errcode": 0,
     "errmsg": "成功执行",
 }
-```
-**返回参数说明** 
-
-|参数名|类型|说明|
-|:-----|:---|----|
 
 **备注** 
 
@@ -810,11 +848,6 @@
     "errcode": 0,
     "errmsg": "成功执行",
 }
-```
-**返回参数说明** 
-
-|参数名|类型|说明|
-|:-----|:---|----|
 
 **备注** 
 
@@ -841,11 +874,6 @@
     "errcode": 0,
     "errmsg": "成功执行",
 }
-```
-**返回参数说明** 
-
-|参数名|类型|说明|
-|:-----|:---|----|
 
 **备注** 
 
@@ -875,10 +903,13 @@
     }
 }
 ```
+
 **返回参数说明** 
 
 |参数名|类型|说明|
 |:-----|:---|----|
+|gaSecret|string|谷歌验证码密钥|
+|gaQrcode|string|谷歌验证码密钥二维码|
 
 **备注** 
 
@@ -906,10 +937,6 @@
     "errmsg": "成功执行",
 }
 ```
-**返回参数说明** 
-
-|参数名|类型|说明|
-|:-----|:---|----|
 
 **备注** 
 
@@ -960,6 +987,18 @@
 
 |参数名|类型|说明|
 |:-----|:---|----|
+|dataCount|int|数据总条数|
+|financeList|array|交易列表|
+|id|int|交易ID|
+|status|int|交易状态：1进行中，2已完成|
+|type|int|交易类型|
+|iconUrl|string|交易图标Url|
+|title|string|交易标题|
+|amount|float|交易数量|
+|amountStr|string|交易数量字符串|
+|tokenSymbol|string|通证符号|
+|timeStr|string|交易时间字符串|
+|statusStr|string|交易状态描述|
 
 **备注** 
 
@@ -1068,11 +1107,6 @@
                         "tag": "主钱包",
                         "addr": "0x366199b0377ba868bb7333de09a4ddeb671c74a4"
                     },
-                    {
-                        "addrId": 497,
-                        "tag": "哈喽",
-                        "addr": "0x449da27d3b94ca18cb20cc76a477b71077257b54"
-                    }
                 ]
             },
             {
@@ -1088,6 +1122,11 @@
 
 |参数名|类型|说明|
 |:-----|:---|----|
+|symbol|string|通证符号|
+|addrList|array|地址列表|
+|addrId|int|地址ID|
+|tag|string|地址备注|
+|addr|string|地址|
 
 **备注** 
 
@@ -1125,16 +1164,6 @@
                 "hasTag": 0,
                 "protocolArr": "[1]"
             },
-            {
-                "addrId": 497,
-                "tag": "哈喽",
-                "addr": "0x449da27d3b94ca18cb20cc76a477b71077257b54",
-                "addrTag": "",
-                "tokenId": 4,
-                "tokenSymbol": "BCV",
-                "hasTag": 0,
-                "protocolArr": "[1]"
-            }
         ]
     }
 }
@@ -1143,6 +1172,15 @@
 
 |参数名|类型|说明|
 |:-----|:---|----|
+|addrList|array|地址列表|
+|addrId|int|地址ID|
+|tag|string|地址备注|
+|addr|string|地址|
+|addrTag|string|地址标签|
+|tokenId|string|地址支持的通证ID|
+|tokenSymbol|string|通证符号|
+|hasTag|int|是否有标签|
+|protocolArr|json|支持的币种类型json|
 
 **备注** 
 
