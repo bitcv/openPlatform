@@ -98,8 +98,8 @@
     "errmsg": "成功执行",
 }
 ```
-
 **备注** 
+
 ### 获取用户资产
 **请求URL：** 
 - ` https://www.bitcv.com/api/sdk/getUserAsset `
@@ -140,6 +140,16 @@
 
 |参数名|类型|说明|
 |:-----|:---|----|
+|tokenId|int|通证ID|
+|tokenSymbol|string|通证符号|
+|hasTag|int|是否输入标签：0不需要，1需要|
+|logoUrl|string|通证logo链接|
+|price|float|通证单价|
+|priceStr|string|通证单价（带千位分隔符）|
+|amount|float|通证数量|
+|amountStr|string|通证数量（带千位分隔符）|
+|value|float|通证价值|
+|valueStr|string|通证价值（带千位分隔符）|
 
 **备注** 
 
@@ -169,18 +179,17 @@
         "dataList": [
             {
                 "tokenId": 4,
-                "amount": "0.0000",
                 "tokenSymbol": "BCV",
                 "tokenProtocol": 1,
+                "hasTag": 0,
                 "logoUrl": "https://static.ucai.net/storage/image/logo/RRhDcW5lrxgNpzpsBxSRF5qxZ6vTAG07bA3Chdge.png",
-                "price": "0.109",
-                "value": "0.000",
-                "order": 10001,
-                "priceCNY": "0.109",
-                "priceStr": "0.109",
+                "amount": "0.0000",
                 "amountStr": "0.0000",
+                "order": 10001,
+                "price": "0.109",
+                "priceStr": "0.109",
+                "value": "0.000",
                 "valueStr": "0.000",
-                "hasTag": 0
             },
         ]
     }
@@ -190,7 +199,17 @@
 
 |参数名|类型|说明|
 |:-----|:---|----|
-|token|string|客户端调用接口必须凭证|
+|tokenId|int|通证ID|
+|tokenSymbol|string|通证符号|
+|tokenProtocol|int|通证类别|
+|hasTag|int|是否输入标签：0不需要，1需要|
+|logoUrl|string|通证logo链接|
+|price|float|通证单价|
+|priceStr|string|通证单价（带千位分隔符）|
+|amount|float|通证数量|
+|amountStr|string|通证数量（带千位分隔符）|
+|value|float|通证价值|
+|valueStr|string|通证价值（带千位分隔符）|
 
 **备注** 
 - 如果未注册，则直接注册
@@ -236,6 +255,14 @@
 
 |参数名|类型|说明|
 |:-----|:---|----|
+|tokenList|array|通证列表|
+|id|int|通证ID|
+|name|string|通证名称|
+|symbol|string|通证符号|
+|logoUrl|string|通证logo链接|
+|protocol|int|通证类别|
+|isShow|int|是否展示|
+|hasTag|int|是否有memo|
 
 **备注** 
 
@@ -279,6 +306,14 @@
 
 |参数名|类型|说明|
 |:-----|:---|----|
+|tokenList|array|通证列表|
+|id|int|通证ID|
+|name|string|通证名称|
+|symbol|string|通证符号|
+|logoUrl|string|通证logo链接|
+|protocol|int|通证类别|
+|isShow|int|是否展示|
+|hasTag|int|是否有memo|
 
 **备注** 
 
@@ -332,7 +367,6 @@
 ```
 **备注** 
 
-
 ### 获取用户钱包地址列表
 **请求URL：** 
 - ` https://www.bitcv.com/api/sdk/getWalletList `
@@ -364,15 +398,6 @@
                 "hasTag": 0,
                 "mobile": "18514429019"
             },
-            {
-                "tokenProtocol": 2,
-                "tokenSymbol": "BTC",
-                "qrcode": "",
-                "addr": "",
-                "addrTag": "",
-                "hasTag": 0,
-                "mobile": "18514429019"
-            },
         ]
     }
 }
@@ -381,6 +406,13 @@
 
 |参数名|类型|说明|
 |:-----|:---|----|
+|tokenProtocol|int|通证类别|
+|tokenSymbol|string|通证符号|
+|qrcode|string|二维码字符串|
+|addr|string|钱包地址|
+|addrTag|string|地址标签|
+|hasTag|int|是否有标签|
+|mobile|string|用户手机号|
 
 **备注** 
 
@@ -418,6 +450,11 @@
 
 |参数名|类型|说明|
 |:-----|:---|----|
+|tokenProtocol|int|通证类别|
+|tokenSymbol|string|通证符号|
+|qrcode|string|二维码字符串|
+|addr|string|钱包地址|
+|addrTag|string|地址标签|
 
 **备注** 
 
@@ -443,12 +480,12 @@
     "errcode": 0,
     "errmsg": "成功执行",
     "data": {
-        "mobile": "18514429019",
         "tokenSymbol": "BCV",
         "qrcode": "iban:XE54DQFJCPH89TMVU1O6BJCH7KJX9CRCGDD",
         "addr": "0x7593817f4815aeb2d473468d5e93e56d9aad58e1",
         "addrTag": "",
         "hasTag": 0
+        "mobile": "18514429019",
     }
 }
 ```
@@ -456,6 +493,12 @@
 
 |参数名|类型|说明|
 |:-----|:---|----|
+|tokenSymbol|string|通证符号|
+|qrcode|string|二维码字符串|
+|addr|string|钱包地址|
+|addrTag|string|地址标签|
+|hasTag|int|是否有标签|
+|mobile|string|用户手机号|
 
 **备注** 
 
