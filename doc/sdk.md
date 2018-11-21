@@ -719,7 +719,7 @@
 |feeTokenId|int|服务费通着ID|
 |feeSymbol|string|服务费符号|
 |feeAmount|float|所需手续费数量|
-|feeAmount|string|所需手续费数量（带千位分隔符）|
+|feeAmountStr|string|所需手续费数量（带千位分隔符）|
 |feeTokenAmount|float|用户持有手续费token的剩余数量|
 |feeTokenAmountStr|string|用户持有手续费token的剩余数量（带千位分隔符）|
 |isFree|int|是否免服务费|
