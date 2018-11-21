@@ -1,6 +1,6 @@
 # 目录
 - [服务端接口](#服务端接口)
-  - [注册登录](#注册登录)
+  - [注册/登录](#注册登录)
 - [客户端接口](#客户端接口)
   - [获取用户资产](#获取用户资产)
   - [获取用户资产列表](#获取用户资产列表)
@@ -43,7 +43,7 @@
 |参数名|必选|类型|说明|
 |:-----|:---|:---|----|
 |appKey|是|string|第三方应用唯一标识|
-|token|是|string|应用授权接口调用凭证|
+|sign|是|string|服务端签名|
 |nation|是|int|国家码|
 |mobile|是|string|用户手机号|
 
@@ -66,10 +66,73 @@
 **备注** 
 - 如果未注册，则直接注册
 
+### 退出登录
+**请求URL：** 
+- ` https://www.bitcv.com/api/sdk/signout `
+
+**请求方式：**
+- POST 
+
+**参数：** 
+
+|参数名|必选|类型|说明|
+|:-----|:---|:---|----|
+|appKey|是|string|第三方应用唯一标识|
+|sign|是|string|服务端签名|
+|token|是|string|用户身份唯一标识|
+
+**返回示例**
+```JSON
+{
+    "errcode": 0,
+    "errmsg": "成功执行",
+}
+```
+
+**备注** 
+
 ## 客户端接口
 ### 获取用户资产
 **请求URL：** 
 - ` https://www.bitcv.com/api/sdk/getUserAsset `
+
+**请求方式：**
+- POST 
+
+**参数：** 
+
+|参数名|必选|类型|说明|
+|:-----|:---|:---|----|
+|appKey|是|string|第三方应用唯一标识|
+|token|是|string|用户唯一标识|
+|tokenId|是|int|通证ID|
+
+**返回示例**
+```JSON
+{
+    "errcode": 0,
+    "errmsg": "成功执行",
+    "data": {
+        "tokenId": 4,
+        "tokenSymbol": "BCV",
+        "hasTag": 0,
+        "logoUrl": "https://static.ucai.net/storage/image/logo/RRhDcW5lrxgNpzpsBxSRF5qxZ6vTAG07bA3Chdge.png",
+        "price": "0.10",
+        "priceCNY": "0.10",
+        "priceStr": "0.10",
+        "amount": "0.0000",
+        "amountStr": "0.0000",
+        "value": "0.00",
+        "valueStr": "0.00"
+    }
+}
+```
+**返回参数说明** 
+
+|参数名|类型|说明|
+|:-----|:---|----|
+
+**备注** 
 
 ### 获取用户资产列表
 **请求URL：** 
