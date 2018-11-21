@@ -484,7 +484,7 @@
         "qrcode": "iban:XE54DQFJCPH89TMVU1O6BJCH7KJX9CRCGDD",
         "addr": "0x7593817f4815aeb2d473468d5e93e56d9aad58e1",
         "addrTag": "",
-        "hasTag": 0
+        "hasTag": 0,
         "mobile": "18514429019",
     }
 }
