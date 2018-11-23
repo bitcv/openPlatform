@@ -42,7 +42,7 @@
 ## 服务端接口
 ### 注册/登录
 **请求URL：** 
-- ` https://www.bitcv.com/api/sdk/signin `
+- ` https://www.bitcv.com/api/sdk_server/signin `
 
 **请求方式：**
 - POST 
@@ -71,6 +71,71 @@
 |参数名|类型|说明|
 |:-----|:---|----|
 |token|string|用户身份唯一标识|
+
+**备注** 
+- 如果未注册，则直接注册
+
+### 获取交易列表
+**请求URL：** 
+- ` https://www.bitcv.com/api/sdk_server/getFinanceList `
+
+**请求方式：**
+- POST 
+
+**参数：** 
+
+|参数名|必选|类型|说明|
+|:-----|:---|:---|----|
+|appKey|是|string|第三方应用唯一标识|
+|sign|是|string|服务端签名|
+|mobile|否|string|用户手机号（不传则不按此字段过滤）|
+|tokenSymbol|否|string|通证符号（不传则不按此字段过滤）|
+|status|否|int|转账状态：1进行中2已完成（不传则不按此字段过滤）|
+|typeArr|否|array|转账类型数组（转账类型：1平台外转入，2平台外转出，3平台内转入，4平台内转出）|
+|perpage|是|int|每页数据条数，大于等于1，小于等于500|
+|pageno|是|int|页码，从1开始|
+
+**返回示例**
+```JSON
+{
+    "errcode": 0,
+    "errmsg": "成功执行",
+    "data": {
+        "dataCount": 1,
+        "dataList": [
+            {
+                "id": 2,
+                "type": 1,
+                "typeStr": "平台外收款",
+                "status": 2,
+                "statusStr": "已完成",
+                "tokenId": 190,
+                "amount": 3,
+                "tokenSymbol": "TA",
+                "mobile": "18514429019",
+                "costTime": "93802.77",
+                "createdAt": "2018-10-20 09:26:42"
+            }
+        ]
+    }
+}
+```
+**返回参数说明** 
+
+|参数名|类型|说明|
+|:-----|:---|----|
+|id|int|转账记录ID|
+|type|int|转账类型：1平台外转入，2平台外转出，3平台内转入，4平台内转出|
+|typeStr|string|转账类型描述|
+|status|int|状态：1进行中2已完成|
+|statusStr|string|转账状态描述|
+|tokenId|int|转账通证ID|
+|amount|float|转账数量|
+|tokenSymbol|string|通证符号|
+|mobile|string|用户手机号|
+|costTime|float|转账耗时（min）|
+|createdAt|string|转账发起时间|
+
 
 **备注** 
 - 如果未注册，则直接注册
