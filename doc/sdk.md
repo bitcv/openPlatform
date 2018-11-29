@@ -138,7 +138,6 @@
 
 
 **备注** 
-- 如果未注册，则直接注册
 
 ## 客户端接口
 ### 退出登录
@@ -265,6 +264,8 @@
 
 |参数名|类型|说明|
 |:-----|:---|----|
+|totalValue|float|资产总价值（用于客户端计算）|
+|totalValueStr|string|资产总价值（带千分位分隔符，用于显示）|
 |tokenId|int|通证ID|
 |tokenSymbol|string|通证符号|
 |tokenProtocol|int|通证类别|
