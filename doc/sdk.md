@@ -686,6 +686,7 @@
 
 |参数名|必选|类型|说明|
 |:-----|:---|:---|----|
+|protocolArr|否|string|按币种过滤|
 |appKey|是|string|第三方应用唯一标识|
 |token|是|string|用户唯一标识|
 |sign|是|string|客户端签名|
