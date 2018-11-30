@@ -928,7 +928,7 @@
 
 ### 验证谷歌验证码
 **请求URL：** 
-- ` https://www.bitcv.com/api/sdk/verifyGacode `
+- ` https://www.bitcv.com/api/sdk/verifyGaCode `
 
 **请求方式：**
 - POST 
