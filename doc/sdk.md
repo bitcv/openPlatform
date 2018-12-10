@@ -77,6 +77,33 @@
 
 **备注** 
 
+### 重置用户谷歌验证码
+**请求URL：** 
+- ` https://www.bitcv.com/api/sdk_server/delUserGacode `
+
+**请求方式：**
+- POST 
+
+**参数：** 
+
+|参数名|必选|类型|说明|
+|:-----|:---|:---|----|
+|appKey|是|string|第三方应用唯一标识|
+|sign|是|string|服务端签名|
+|mobile|是|string|用户手机号|
+
+**返回示例**
+```JSON
+{
+    "errcode": 0,
+    "errmsg": "成功执行",
+    "data": {}
+}
+```
+**返回参数说明** 
+
+**备注** 
+
 ### 获取转账记录
 **请求URL：** 
 - ` https://www.bitcv.com/api/sdk_server/getFinanceList `
@@ -93,7 +120,7 @@
 |mobile|否|string|用户手机号（不传则不按此字段过滤）|
 |tokenSymbol|否|string|通证符号（不传则不按此字段过滤）|
 |status|否|int|转账状态：1进行中2已完成（不传则不按此字段过滤）|
-|typeArr|否|array|转账类型数组（转账类型：1平台外转入，2平台外转出，3平台内转入，4平台内转出）|
+|typeStr|否|逗号分隔字符串|转账类型字符串（如：1,3）（转账类型：1平台外转入，2平台外转出，3平台内转入，4平台内转出）|
 |perpage|是|int|每页数据条数，大于等于1，小于等于500|
 |pageno|是|int|页码，从1开始|
 
@@ -106,17 +133,21 @@
         "dataCount": 1,
         "dataList": [
             {
-                "id": 2,
-                "type": 1,
-                "typeStr": "平台外收款",
+                "id": 4,
+                "type": 3,
+                "typeStr": "平台内收款",
+                "title": "收款",
+                "iconUrl": "https://www.bitcv.com/app_static/icon/finance_in_cn.png",
                 "status": 2,
                 "statusStr": "已完成",
-                "tokenId": 190,
-                "amount": 3,
-                "tokenSymbol": "TA",
+                "tokenId": 41,
+                "tokenSymbol": "AAC",
                 "mobile": "18514429019",
-                "costTime": "93802.77",
-                "createdAt": "2018-10-20 09:26:42"
+                "costTime": 0,
+                "amount": 100,
+                "fromAddr": "0x339150205060cdd430638c878909e603ce8f3a49",
+                "toAddr": "bcvgiveumore",
+                "createdAt": "2018-12-01 19:20:48"
             }
         ]
     }
@@ -129,10 +160,14 @@
 |id|int|转账记录ID|
 |type|int|转账类型：1平台外转入，2平台外转出，3平台内转入，4平台内转出|
 |typeStr|string|转账类型描述|
+|title|string|标题|
+|iconUrl|string|转账图标url|
 |status|int|状态：1进行中2已完成|
 |statusStr|string|转账状态描述|
 |tokenId|int|转账通证ID|
 |amount|float|转账数量|
+|fromAddr|string|转出地址|
+|toAddr|string|转入地址|
 |tokenSymbol|string|通证符号|
 |mobile|string|用户手机号|
 |costTime|float|转账耗时（min）|
