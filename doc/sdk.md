@@ -206,7 +206,6 @@
                 "symbol": "BCV",
                 "logoUrl": "https://static.ucai.net/storage/image/logo/RRhDcW5lrxgNpzpsBxSRF5qxZ6vTAG07bA3Chdge.png",
                 "protocol": 1,
-                "isShow": 0,
                 "hasTag": 0
             },
         ]
@@ -223,7 +222,6 @@
 |symbol|string|通证符号|
 |logoUrl|string|通证logo链接|
 |protocol|int|通证类别|
-|isShow|int|是否展示|
 |hasTag|int|是否有memo|
 
 **备注** 
