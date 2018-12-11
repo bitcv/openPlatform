@@ -3,6 +3,7 @@
   - [注册/登录](#注册登录)
   - [重置用户谷歌验证码](#重置用户谷歌验证码)
   - [获取转账记录](#获取转账记录)
+  - [获取币种列表](#获取币种列表)
 - [客户端接口](#客户端接口)
   - [退出登录](#退出登录)
   - [获取用户资产](#获取用户资产)
@@ -174,6 +175,55 @@
 |costTime|float|转账耗时（min）|
 |createdAt|string|转账发起时间|
 
+
+**备注** 
+
+**请求URL：** 
+- ` https://www.bitcv.com/api/sdk_server/searchTokenList `
+
+**请求方式：**
+- POST 
+
+**参数：** 
+
+|参数名|必选|类型|说明|
+|:-----|:---|:---|----|
+|appKey|是|string|第三方应用唯一标识|
+|sign|是|string|服务端签名|
+|keyword|否|string|过滤关键字|
+
+**返回示例**
+```JSON
+{
+    "errcode": 0,
+    "errmsg": "成功执行",
+    "data": {
+        "tokenList": [
+            {
+                "id": 4,
+                "name": "BitCapitalVendorToken",
+                "symbol": "BCV",
+                "logoUrl": "https://static.ucai.net/storage/image/logo/RRhDcW5lrxgNpzpsBxSRF5qxZ6vTAG07bA3Chdge.png",
+                "protocol": 1,
+                "isShow": 0,
+                "hasTag": 0
+            },
+        ]
+    }
+}
+```
+**返回参数说明** 
+
+|参数名|类型|说明|
+|:-----|:---|----|
+|tokenList|array|通证列表|
+|id|int|通证ID|
+|name|string|通证名称|
+|symbol|string|通证符号|
+|logoUrl|string|通证logo链接|
+|protocol|int|通证类别|
+|isShow|int|是否展示|
+|hasTag|int|是否有memo|
 
 **备注** 
 
