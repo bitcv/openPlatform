@@ -231,7 +231,7 @@
 ## 服务端回调接口
 ### 转账成功回调
 **请求URL：** 
-- `http://api.callback.server`
+- 第三方可配置：`http://api.callback.server`
 
 **请求方式：**
 - POST 
