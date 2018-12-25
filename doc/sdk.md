@@ -907,6 +907,7 @@
 |:-----|:---|:---|----|
 |tokenId|是|int|通证ID|
 |toAddr|是|string|转账地址|
+|addrTag|否|string|地址memo，EOS系内部转账必填|
 |feeAmount|是|float|转账手续费数量|
 |amount|是|float|转账数量|
 |paywd|是|int|支付密码|
@@ -1484,3 +1485,4 @@
     "data": {},
 }
 ```
+166,701,1690,1740,1765
