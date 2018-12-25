@@ -255,6 +255,16 @@
 |toAddr|string|转入地址|
 |txTime|string|交易时间|
 
+**返回示例**
+```JSON
+{
+    "errcode": 0,
+    "errmsg": "成功执行",
+    "data": {},
+}
+```
+**备注** 
+
 ## 客户端接口
 ### 退出登录
 **请求URL：** 
