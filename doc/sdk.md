@@ -4,6 +4,8 @@
   - [重置用户谷歌验证码](#重置用户谷歌验证码)
   - [获取转账记录](#获取转账记录)
   - [获取币种](#获取币种)
+- [服务端回调接口](#服务端回调接口)
+  - [转账成功回调](#转账成功回调)
 - [客户端接口](#客户端接口)
   - [退出登录](#退出登录)
   - [获取用户资产](#获取用户资产)
@@ -225,6 +227,33 @@
 |hasTag|int|是否有memo|
 
 **备注** 
+
+## 服务端回调接口
+### 转账成功回调
+**请求URL：** 
+- `http://api.callback.server`
+
+**请求方式：**
+- POST 
+
+**参数：** 
+
+|参数名|类型|说明|
+|:-----|:---|:---|----|
+|id|int|转账记录ID|
+|mobile|string|用户手机号|
+|type|int|转账类型：1平台外转入，2平台外转出，3平台内转入，4平台内转出|
+|typeStr|string|转账类型描述|
+|title|string|标题|
+|iconUrl|string|转账图标url|
+|status|int|2已完成|
+|statusStr|string|转账状态描述|
+|tokenId|int|转账通证ID|
+|tokenSymbol|string|通证符号|
+|amount|float|转账数量|
+|fromAddr|string|转出地址|
+|toAddr|string|转入地址|
+|txTime|string|交易时间|
 
 ## 客户端接口
 ### 退出登录
