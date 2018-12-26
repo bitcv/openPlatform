@@ -32,6 +32,7 @@
   - [设置谷歌验证码](#设置谷歌验证码)
   - [获取转账记录列表](#获取转账记录列表)
   - [获取转账记录详情](#获取转账记录详情)
+  - [获取常用地址通证列表](#获取常用地址通证列表)
   - [获取常用地址列表](#获取常用地址列表)
   - [获取常用地址](#获取常用地址)
   - [添加常用地址](#添加常用地址)
@@ -1333,6 +1334,58 @@
 
 **备注** 
 
+### 获取常用地址通证列表
+**请求URL：** 
+- ` https://www.bitcv.com/api/sdk/getAddrTokenList `
+
+**请求方式：**
+- POST 
+
+**参数：** 
+
+|参数名|必选|类型|说明|
+|:-----|:---|:---|----|
+|appKey|是|string|第三方应用唯一标识|
+|token|是|string|用户唯一标识|
+|sign|是|string|客户端签名|
+
+**返回示例**
+```JSON
+{
+    "errcode": 0,
+    "errmsg": "成功执行",
+    "data": {
+        "tokenList": [
+            {
+                "tokenId": 156,
+                "tokenSymbol": "ETH",
+                "logoUrl": "https://static.ucai.net/storage/image/logo/45qNTzhGcv3OmplitL47hyl4jqAlGXM1GKVkMpgd.png",
+                "hasTag": 0
+            },
+            {
+                "tokenId": 160,
+                "tokenSymbol": "BTC",
+                "logoUrl": "https://file.ucai.net/logo_uge9TyZZwPeGZwM",
+                "hasTag": 0
+            },
+        ]
+    }
+}
+```
+
+**返回参数说明** 
+
+|参数名|类型|说明|
+|:-----|:---|----|
+|tokenList|array|通证列表|
+|tokenId|int|通证ID|
+|tokenSymbol|string|通证符号|
+|logoUrl|string|通证logo|
+|hasTag|string|是否有地址标签|
+
+**备注** 
+
+
 ### 获取常用地址列表
 **请求URL：** 
 - ` https://www.bitcv.com/api/sdk/getTranAddrList `
@@ -1524,4 +1577,3 @@
     "data": {},
 }
 ```
-166,701,1690,1740,1765
