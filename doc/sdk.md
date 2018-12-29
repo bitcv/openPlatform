@@ -924,7 +924,7 @@
 |hasPaywd|int|是否设置了支付密码|
 |hasGacode|int|是否设置了谷歌验证码|
 |forceGacode|int|是否必须输入谷歌验证码|
-|remainAmount|float|用户持有转账token的数量|
+|remainAmount|float|谷歌验证码限制数量|
 |maxAmountStr|string|每日免谷歌验证码转账限额|
 |feeDesc|array|服务费说明|
 |hasTag|int|是否有地址标签|
