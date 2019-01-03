@@ -40,14 +40,14 @@ H5接入需要前后端一起对接，其中网页授权登录的流程可采用
 
 ### APP-SDK接入指南：
 通过嵌入币威 APP-SDK，项目方App无需开发任何和区块链相关的代码，便拥有了钱包的收款、转账、查询交易记录等所有基本功能。
-币威同时开放APP的UI源码，项目方可选择直接导入SDK不需要开发UI（APP接口已经封装好），也可以自行修改UI和调用接口。
+币威同时开放APP的UI源码，项目方可选择直接导入SDK不需要开发UI（APP接口已经封装好），也可以自行修改UI和调用接口。  
 服务器端对接请参考上面的文档，APP对接：
 
 1、使用币威SDK，iOS、Android相关文档：  
-[iOS-SDK 使用文档](https://github.com/bitcv/iOS-BitcvWalletSDK)
+[iOS-SDK 使用文档](https://github.com/bitcv/iOS-BitcvWalletSDK)  
 [Android-SDK 使用文档](https://github.com/bitcv/Android-BitcvWalletSDK)
 
-2、APP源码开发：
+2、APP源码开发：  
 [客户端APP接口文档](./doc/sdk.md)  
 
 相关功能介绍：
@@ -60,7 +60,7 @@ H5接入需要前后端一起对接，其中网页授权登录的流程可采用
 7. SDK登录有效期7天，如过期需要重新使用手机验证登录
 8. 项目方只能通过接口查询该项目币种的数据，不能查询其他币种资产（防止多SDK数据透明）。
 
-### API使用场景
+API使用场景：  
 通过api可以完成企业账户与用户之间的资产划转等交互使用，例如：
 1. 用户初次打开SDK便能看到App的资产  
 对企业账号充值资产  
