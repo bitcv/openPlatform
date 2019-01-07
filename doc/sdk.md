@@ -733,6 +733,7 @@
 |appKey|是|string|第三方应用唯一标识|
 |token|是|string|用户唯一标识|
 |sign|是|string|客户端签名|
+|scope|否|string|转账时传入的额外参数|
 
 **返回示例**
 ```JSON
