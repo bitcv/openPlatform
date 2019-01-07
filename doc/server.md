@@ -260,7 +260,7 @@
 |fromAddr|string|转出地址|
 |toAddr|string|转入地址|
 |txTime|string|交易时间|
-|scope|string|转账时传入的额外参数|
+|state|string|转账时传入的额外参数|
 
 **返回示例**
 ```JSON
