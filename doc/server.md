@@ -5,6 +5,7 @@
   - [获取转账记录](#获取转账记录)
   - [获取币种](#获取币种)
   - [获取用户持有通证数量](#获取用户持有通证数量)
+  - [企业账号给用户转账](#企业账号给用户转账)
 - [服务端回调接口](#服务端回调接口)
   - [转账成功回调](#转账成功回调)
 
@@ -233,6 +234,35 @@
 |symbol|string|通证符号|
 |amount|float|通证数量|
 ```
+### 企业账号给用户转账
+**请求URL：** 
+- ` https://www.bitcv.com/api/sdk_server/tranTokenServer `
+
+**请求方式：**
+- POST 
+
+**参数：** 
+
+|参数名|必选|类型|说明|
+|:-----|:---|:---|----|
+|nation|是|int|收款用户手机号国家码|
+|mobile|是|string|收款用户手机号|
+|tokenId|是|int|转账通证ID|
+|amount|是|float|转账数量|
+|state|否|string|额外参数|
+|appKey|是|string|第三方应用唯一标识|
+|sign|是|string|服务端签名|
+
+**返回示例**
+```JSON
+{
+    "errcode": 0,
+    "errmsg": "成功执行",
+    "data": {}
+}
+
+**返回参数说明** 
+```
 
 ## 服务端回调接口
 ### 转账成功回调
@@ -260,7 +290,7 @@
 |fromAddr|string|转出地址|
 |toAddr|string|转入地址|
 |txTime|string|交易时间|
-|state|string|转账时传入的额外参数|
+|scope|string|转账时传入的额外参数|
 
 **返回示例**
 ```JSON
