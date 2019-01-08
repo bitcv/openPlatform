@@ -1,7 +1,7 @@
 # 目录
-- [服务端接口](#服务端接口)
-  - [注册/登录](#注册登录)
-  - [获取转账记录](#获取转账记录)
+
+- [服务器端接口请参考](./server.md)
+
 - [客户端接口](#客户端接口)
   - [退出登录](#退出登录)
   - [获取用户资产](#获取用户资产)
@@ -28,6 +28,7 @@
   - [设置谷歌验证码](#设置谷歌验证码)
   - [获取转账记录列表](#获取转账记录列表)
   - [获取转账记录详情](#获取转账记录详情)
+  - [获取常用地址通证列表](#获取常用地址通证列表)
   - [获取常用地址列表](#获取常用地址列表)
   - [获取常用地址](#获取常用地址)
   - [添加常用地址](#添加常用地址)
@@ -42,104 +43,6 @@
 |105|签名错误|
 |302|未登录|
 
-## 服务端接口
-### 注册/登录
-**请求URL：** 
-- ` https://www.bitcv.com/api/sdk_server/signin `
-
-**请求方式：**
-- POST 
-
-**参数：** 
-
-|参数名|必选|类型|说明|
-|:-----|:---|:---|----|
-|appKey|是|string|第三方应用唯一标识|
-|sign|是|string|服务端签名|
-|nation|是|int|国家码|
-|mobile|是|string|用户手机号|
-
-**返回示例**
-```JSON
-{
-    "errcode": 0,
-    "errmsg": "成功执行",
-    "data": {
-        "token": "Df5g1jV7dEL4o9bZegJG"
-    }
-}
-```
-**返回参数说明** 
-
-|参数名|类型|说明|
-|:-----|:---|----|
-|token|string|用户身份唯一标识|
-
-**备注** 
-
-### 获取转账记录
-**请求URL：** 
-- ` https://www.bitcv.com/api/sdk_server/getFinanceList `
-
-**请求方式：**
-- POST 
-
-**参数：** 
-
-|参数名|必选|类型|说明|
-|:-----|:---|:---|----|
-|appKey|是|string|第三方应用唯一标识|
-|sign|是|string|服务端签名|
-|mobile|否|string|用户手机号（不传则不按此字段过滤）|
-|tokenSymbol|否|string|通证符号（不传则不按此字段过滤）|
-|status|否|int|转账状态：1进行中2已完成（不传则不按此字段过滤）|
-|typeArr|否|array|转账类型数组（转账类型：1平台外转入，2平台外转出，3平台内转入，4平台内转出）|
-|perpage|是|int|每页数据条数，大于等于1，小于等于500|
-|pageno|是|int|页码，从1开始|
-
-**返回示例**
-```JSON
-{
-    "errcode": 0,
-    "errmsg": "成功执行",
-    "data": {
-        "dataCount": 1,
-        "dataList": [
-            {
-                "id": 2,
-                "type": 1,
-                "typeStr": "平台外收款",
-                "status": 2,
-                "statusStr": "已完成",
-                "tokenId": 190,
-                "amount": 3,
-                "tokenSymbol": "TA",
-                "mobile": "18514429019",
-                "costTime": "93802.77",
-                "createdAt": "2018-10-20 09:26:42"
-            }
-        ]
-    }
-}
-```
-**返回参数说明** 
-
-|参数名|类型|说明|
-|:-----|:---|----|
-|id|int|转账记录ID|
-|type|int|转账类型：1平台外转入，2平台外转出，3平台内转入，4平台内转出|
-|typeStr|string|转账类型描述|
-|status|int|状态：1进行中2已完成|
-|statusStr|string|转账状态描述|
-|tokenId|int|转账通证ID|
-|amount|float|转账数量|
-|tokenSymbol|string|通证符号|
-|mobile|string|用户手机号|
-|costTime|float|转账耗时（min）|
-|createdAt|string|转账发起时间|
-
-
-**备注** 
 
 ## 客户端接口
 ### 退出登录
@@ -799,7 +702,7 @@
 |hasPaywd|int|是否设置了支付密码|
 |hasGacode|int|是否设置了谷歌验证码|
 |forceGacode|int|是否必须输入谷歌验证码|
-|remainAmount|float|用户持有转账token的数量|
+|remainAmount|float|谷歌验证码限制数量|
 |maxAmountStr|string|每日免谷歌验证码转账限额|
 |feeDesc|array|服务费说明|
 |hasTag|int|是否有地址标签|
@@ -822,6 +725,7 @@
 |:-----|:---|:---|----|
 |tokenId|是|int|通证ID|
 |toAddr|是|string|转账地址|
+|addrTag|否|string|地址memo，EOS系内部转账必填|
 |feeAmount|是|float|转账手续费数量|
 |amount|是|float|转账数量|
 |paywd|是|int|支付密码|
@@ -829,6 +733,7 @@
 |appKey|是|string|第三方应用唯一标识|
 |token|是|string|用户唯一标识|
 |sign|是|string|客户端签名|
+|state|否|string|转账时传入的额外参数|
 
 **返回示例**
 ```JSON
@@ -1207,6 +1112,58 @@
 |:-----|:---|----|
 
 **备注** 
+
+### 获取常用地址通证列表
+**请求URL：** 
+- ` https://www.bitcv.com/api/sdk/getAddrTokenList `
+
+**请求方式：**
+- POST 
+
+**参数：** 
+
+|参数名|必选|类型|说明|
+|:-----|:---|:---|----|
+|appKey|是|string|第三方应用唯一标识|
+|token|是|string|用户唯一标识|
+|sign|是|string|客户端签名|
+
+**返回示例**
+```JSON
+{
+    "errcode": 0,
+    "errmsg": "成功执行",
+    "data": {
+        "tokenList": [
+            {
+                "tokenId": 156,
+                "tokenSymbol": "ETH",
+                "logoUrl": "https://static.ucai.net/storage/image/logo/45qNTzhGcv3OmplitL47hyl4jqAlGXM1GKVkMpgd.png",
+                "hasTag": 0
+            },
+            {
+                "tokenId": 160,
+                "tokenSymbol": "BTC",
+                "logoUrl": "https://file.ucai.net/logo_uge9TyZZwPeGZwM",
+                "hasTag": 0
+            },
+        ]
+    }
+}
+```
+
+**返回参数说明** 
+
+|参数名|类型|说明|
+|:-----|:---|----|
+|tokenList|array|通证列表|
+|tokenId|int|通证ID|
+|tokenSymbol|string|通证符号|
+|logoUrl|string|通证logo|
+|hasTag|string|是否有地址标签|
+
+**备注** 
+
 
 ### 获取常用地址列表
 **请求URL：** 
