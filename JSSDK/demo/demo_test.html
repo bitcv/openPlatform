@@ -87,7 +87,7 @@
     <a class="buy" href="javascript:;" onclick="handlePay()">BUY</a>
   </footer>
 
-<script type="text/javascript" src="/bcvwallet.min.js"></script>
+<script type="text/javascript" src="./bcvwallet.min.js"></script>
 
 <!-- 项目并不依赖 jQuery，这里只是作为请求数据使用 -->
 <script type="text/javascript" src="./assets/jquery-3.3.1.min.js"></script>
