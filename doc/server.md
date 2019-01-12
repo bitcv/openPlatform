@@ -110,6 +110,7 @@
         "dataList": [
             {
                 "id": 4,
+                "orderNum": "2019011201003884",
                 "type": 3,
                 "typeStr": "平台内收款",
                 "title": "收款",
