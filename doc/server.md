@@ -278,6 +278,7 @@
 |参数名|类型|说明|
 |:----|:--|----|
 |id|int|转账记录ID|
+|orderId|string|转账订单ID|
 |mobile|string|用户手机号|
 |type|int|转账类型：1平台外转入，2平台外转出，3平台内转入，4平台内转出|
 |typeStr|string|转账类型描述|
