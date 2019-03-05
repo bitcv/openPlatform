@@ -75,6 +75,7 @@
     <div><a class="share" href="javascript:;" onclick="testOpenUrlScheme('bw://trantoken', 'inside')">转账</a></div>
     <div><a class="share" href="javascript:;" onclick="testOpenUrlScheme('bw://userwalletlist', 'inside')">收款</a></div>
     <div><a class="share" href="javascript:;" onclick="testOpenUrlScheme('bw://depo', 'inside')">余币宝</a></div>
+    <div><a class="share" href="javascript:;" onclick="testOpenUrlScheme('bw://depoBuy?depoId=23', 'inside')">余币宝购买页面</a></div>
     <div><a class="share" href="javascript:;" onclick="testOpenUrlScheme('bw://redpack', 'inside')">发糖包</a></div>
     <div><a class="share" href="javascript:;" onclick="testOpenUrlScheme('bw://kyc', 'inside')">KYC</a></div>
     <div><a class="share" href="javascript:;" onclick="testOpenUrlScheme('bw://siginin', 'inside')">登录</a></div>
