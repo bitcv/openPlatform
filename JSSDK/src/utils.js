@@ -6,13 +6,22 @@ import sdkLog from './sdkLog'
 function setupWebViewJavascriptBridge (callback) {
   if (env.isInBitcvApp && env.appPlatform === 'android') {
     // Android使用
-    if (window.WebViewJavascriptBridge) { return callback(window.WebViewJavascriptBridge) }
+    if (window.WebViewJavascriptBridge) {
+      sdkLog('Android-has bridge')
+      return callback(window.WebViewJavascriptBridge)
+    }
+    sdkLog('Android-no bridge and waiting for bridge ready')
     document.addEventListener('WebViewJavascriptBridgeReady', function () {
+      sdkLog('Android-bridge ready now')
       callback(window.WebViewJavascriptBridge)
     }, false)
   } else if (env.isInBitcvApp && env.appPlatform === 'ios') {
     // iOS使用
-    if (window.WebViewJavascriptBridge) { return callback(WebViewJavascriptBridge) }
+    if (window.WebViewJavascriptBridge) {
+      sdkLog('iOS-has bridge')
+      return callback(WebViewJavascriptBridge)
+    }
+    sdkLog('iOS-no bridge and waiting for WVJBCallbacks')
     if (window.WVJBCallbacks) { return window.WVJBCallbacks.push(callback) }
     window.WVJBCallbacks = [callback]
     var WVJBIframe = document.createElement('iframe')

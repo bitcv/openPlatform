@@ -8,7 +8,7 @@ function sdkLog (text) {
     if (logEl == undefined) {
       logEl = document.createElement('p')
       logEl.setAttribute('id', 'bcvWalletLog')
-      logEl.setAttribute('style', 'word-break:break-all;background: #eee;');
+      logEl.setAttribute('style', 'word-break:break-all;background:#eee;z-index:9999;');
       logEl.style.fontSize = '14px'
       document.body.appendChild(logEl)
     }
