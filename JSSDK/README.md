@@ -87,9 +87,10 @@ bcvWallet.requestPayment({
 其中支付相关的凭证、单号信息等需要通过后端调用币威开放平台生成，具体详见：币威支付[开发文档](../doc/pay.md)
 
 ### 分享接口 shareWechat
-集成了分享到微信聊天，微信朋友圈，复制分享内容的功能，目前分享有如下两种形式，通过 type 字段控制：
+集成了分享到微信聊天，微信朋友圈，复制分享内容的功能，目前分享有如下几种形式，通过 type 字段控制：
 1. link：网页链接形式，分享时包含分享到微信聊天，微信朋友圈和复制按钮，用户可以选择复制分享的内容
 2. screenshot：截图分享，APP 将截取整个当前网页为图片进行分享，分享时包含分享到微信聊天，微信朋友圈和下载按钮，用户可以选择将图片下载下来
+3. image：分享图片，分享时包含分享到微信聊天，微信朋友圈和下载按钮，用户可以选择将图片下载下来
 
 分享 link 的示例如下：
 ```javascript
@@ -111,6 +112,28 @@ bcvWallet.shareWechat({
   type: 'screenshot',
   success: function (res) {
     // 分享成功（包括下载成功）后的回调函数
+  }
+});
+```
+分享 image 的示例如下：
+```javascript
+bcvWallet.shareWechat({
+  type: 'image',
+  imageUrl: '', // 必填，分享图片的链接
+  success: function (res) {
+    // 分享成功（包括下载成功）后的回调函数
+  }
+});
+```
+
+### 下载接口 download
+提供下载功能，目前仅支持下载图片。
+```javascript
+bcvWallet.download({
+  type: 'img', // 必填，下载的类型，目前仅支持 'img' 图片形式
+  url: '', // 必填，图片链接
+  success: function (res) {
+    // 下载成功后的回调函数
   }
 });
 ```

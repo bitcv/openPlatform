@@ -78,6 +78,9 @@ bwAPI = {
   },
   openUrlScheme (parm) {
     invokeCmd(apiNameMap.openUrlScheme, parm, parm)
+  },
+  download (parm) {
+    invokeCmd(apiNameMap.download, parm, parm)
   }
 }
 

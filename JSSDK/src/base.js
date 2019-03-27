@@ -6,7 +6,8 @@ const apiNameMap = {
   config: 'config',
   requestPayment: 'requestPayment',
   shareWechat: 'shareWechat',
-  openUrlScheme: 'openUrlScheme'
+  openUrlScheme: 'openUrlScheme',
+  download: 'download'
 }
 
 // platform info

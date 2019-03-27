@@ -82,6 +82,8 @@
     <div><a class="share" href="tel:+86 13071163773">拨打电话</a></div>
 
     <div><a class="share" href="javascript:;" onclick="shareImg()">分享图片</a></div>
+    <div><a class="share" href="javascript:;" onclick="downloadImg()">下载图片</a></div>
+    <div><a class="share" href="javascript:;" onclick="downloadImg2()">下载图片Base64</a></div>
   </section>
   <footer class="footer">
     <a class="share" href="javascript:;" onclick="handleShare()">SHARE</a>
@@ -177,6 +179,30 @@ function testOpenUrlScheme (url, type) {
     type: type,
     success: function (res) {
       alert('打开成功')
+    }
+  })
+}
+
+function downloadImg (url) {
+  if (!isBWConfigSuccess) return alert('币威钱包初始化中，请稍后再试...')
+  bcvWallet.download({
+    type: 'img',
+    url: 'https://cdn2.ettoday.net/images/1381/d1381774.jpg',
+    success: function (res) {
+      // 分享成功（包括复制成功）后的回调函数
+      alert('下载成功')
+    }
+  })
+}
+
+function downloadImg2 (url) {
+  if (!isBWConfigSuccess) return alert('币威钱包初始化中，请稍后再试...')
+  bcvWallet.download({
+    type: 'img',
+    url: 'data:image/png;base64,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',
+    success: function (res) {
+      // 分享成功（包括复制成功）后的回调函数
+      alert('下载成功')
     }
   })
 }
