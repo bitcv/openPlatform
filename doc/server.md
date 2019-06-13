@@ -37,9 +37,7 @@
 {
     "errcode": 0,
     "errmsg": "成功执行",
-    "data": {
-        "token": "Df5g1jV7dEL4o9bZegJG"
-    }
+    "data": {}
 }
 ```
 **返回参数说明** 
