@@ -2,7 +2,7 @@
 启动 IDE（如 Xcode），把 BitcvpaySDK.framework导入到项目工程中。依赖库：UIKit.framework
 
 ### 支持系统版本
-包括iOS8.0及以上版本
+包括iOS9.0及以上版本
 
 ### 配置 URL Scheme 白名单
 <key>LSApplicationQueriesSchemes</key>
