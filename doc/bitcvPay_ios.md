@@ -48,8 +48,8 @@
 +(instancetype)sharedBitcvPayManager;
 
 /*
+
   是否安装了币威钱包
-  
   @return 是否处理。YES代表已安装币威钱包。NO代表:1、没有安装币威钱包2、urlscheme白名单没有配置3、币威钱包的当前版本小于等于3.5.1
 
  */
