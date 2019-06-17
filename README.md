@@ -35,7 +35,7 @@
 签名务必在服务器后端签名，不要把appsecret暴露到app或网页里。  
 2. [后端接口](./doc/bitcvPay_server.md)  
 支付相关接口。  
-3. [移动端使用文档](./doc/bitcvPay_ios.md)  
+3. 移动端使用文档  
 [IOS-SDK使用文档](./doc/bitcvPay_ios.md)  
 [Android-SDK使用文档](./doc/bitcvPay_android.md)  
 
