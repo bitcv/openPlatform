@@ -40,15 +40,20 @@
 #### 类名：BitcvPayManager
 
 #### 方法如下：
+
+/**
+  单例方式获取BitcvPayManager的支付实例
+*/
+
 +(instancetype)sharedBitcvPayManager;
 
 /**
- * 是否安装了币威钱包
- * @return 是否处理  YES代表已安装币威钱包，NO代表:  1、没有安装币威钱包
- *                                             2、urlscheme白名单没有配置
- *                                             3、币威钱包的当前版本小于等于3.5.1
- *
+  是否安装了币威钱包
+  @return 是否处理  YES代表已安装币威钱包，NO代表:  1、没有安装币威钱包
+                                             2、urlscheme白名单没有配置
+                                             3、币威钱包的当前版本小于等于3.5.1
  */
+
 -(BOOL)isInstallBitcvWallet;
 /**
  *  orderString 订单信息
