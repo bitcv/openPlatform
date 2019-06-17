@@ -33,9 +33,9 @@
 ### bitcvPay支付接入
 1. [后端签名机制](./doc/sign.md)  
 签名务必在服务器后端签名，不要把appsecret暴露到app或网页里。  
-2. [后端接口](./doc/bitcvPay.md)  
+2. [后端接口](./doc/bitcvPay_server.md)  
 支付相关接口。  
-3. [移动端文档](./doc/bitcvPay_client.md)
+3. [移动端文档](./doc/bitcvPay_client.md)  
 移动端SDK接入文档
 
 ### H5接入指南：
