@@ -96,7 +96,6 @@
  
  */
 
-
 -(BOOL)handleOpenURL:(NSURL *)url options:(NSDictionary*)options;
 
 /*
