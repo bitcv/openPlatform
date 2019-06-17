@@ -30,7 +30,7 @@
 2. [用户注册登录、获取地址资产、回调等接口](./doc/sdk.md)  
 独立用户相关接口。  
 
-### BitcvPay支付接入
+### BitcvPay支付接入指南：
 1. [后端签名机制](./doc/sign.md)  
 签名务必在服务器后端签名，不要把appsecret暴露到app或网页里。  
 2. [后端接口](./doc/bitcvPay_server.md)  
