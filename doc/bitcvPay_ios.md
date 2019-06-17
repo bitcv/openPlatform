@@ -1,10 +1,10 @@
 ## 客户端iOS集成流程
 启动 IDE（如 Xcode），把 BitcvpaySDK.framework导入到项目工程中。依赖库：UIKit.framework
 
-###支持系统版本
+### 支持系统版本
 包括iOS8.0及以上版本
 
-###配置 URL Scheme 白名单
+### 配置 URL Scheme 白名单
 <key>LSApplicationQueriesSchemes</key>
 	<array>
 		<string>bitcvpay</string>
@@ -20,6 +20,7 @@
 #import <BitcvpaySDK/BitcvPayManager.h>
 
 将 @implementation AppDelegate 中以下代码中的 NSLog 改为实际业务处理代码：
+
 // NOTE: 9.0以后使用新API接口
 - (BOOL)application:(UIApplication *)app openURL:(NSURL *)url options:(NSDictionary<NSString*, id> *)options
 {
