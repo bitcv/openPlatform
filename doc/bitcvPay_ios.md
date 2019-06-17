@@ -41,17 +41,17 @@
 
 #### 方法如下：
 
-/**
-  单例方式获取BitcvPayManager的支付实例
+/*
+   单例方式获取BitcvPayManager的支付实例
 */
 
 +(instancetype)sharedBitcvPayManager;
 
 /*
 
-  是否安装了币威钱包
+   是否安装了币威钱包
 
-  @return 是否处理。YES代表已安装币威钱包。NO代表:1、没有安装币威钱包2、urlscheme白名单没有配置3、币威钱包的当前版本小于等于3.5.1
+   @return 是否处理。YES代表已安装币威钱包。NO代表:1、没有安装币威钱包2、urlscheme白名单没有配置3、币威钱包的当前版本小于等于3.5.1
 
  */
 
@@ -59,9 +59,9 @@
 
 /*
  
- orderString 订单信息
+    orderString 订单信息
  
- urlScheme 币威钱包回调的urlScheme，该urlScheme要和币威提供的保持一致。
+    urlScheme 币威钱包回调的urlScheme，该urlScheme要和币威提供的保持一致。
  
  */
 
@@ -86,13 +86,13 @@
 
 /*
 
-   获得从sso或者web端回调到本app的回调
+    获得从sso或者web端回调到本app的回调
  
-   @param url     第三方sdk的打开本app的回调的url
+    @param url     第三方sdk的打开本app的回调的url
 
-   @param options 回调的参数
+    @param options 回调的参数
  
-   @return 是否处理  YES代表处理成功，NO代表不处理
+    @return 是否处理  YES代表处理成功，NO代表不处理
  
  */
 
@@ -100,7 +100,7 @@
 
 /*
 
-  获取当前SDK版本号
+   获取当前SDK版本号
 
 */
 
