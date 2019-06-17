@@ -35,8 +35,9 @@
 签名务必在服务器后端签名，不要把appsecret暴露到app或网页里。  
 2. [后端接口](./doc/bitcvPay_server.md)  
 支付相关接口。  
-3. [移动端文档](./doc/bitcvPay_client.md)  
-移动端SDK接入文档
+3. [移动端使用文档](./doc/bitcvPay_ios.md)  
+[IOS-SDK使用文档](./doc/bitcvPay_ios.md)  
+[Android-SDK使用文档](./doc/bitcvPay_android.md)  
 
 ### H5接入指南：
 H5接入需要前后端一起对接，其中网页授权登录的流程可采用前后端共同接入或单独后端接入；使用JS-SDK发起支付和分享等操作需要在前端页面接入，并在后端利用appsecret生成签名给前端调用、获取用户信息、生成订单和撤单等。  
