@@ -83,18 +83,20 @@ SdkPayManager.SendBitcvSdkPay(Context context, BitcvPayBean payBean)
 
 
 /*
+
     获取sdk版本号
     返回String   如1.0.0 
-*/
+ */
 
 SdkPayManager.getSdkVersion(Context context)
 
 
+
 /*
+
     检查是否安装币威钱包
     返回boolean  
-*/
-
+ */
 SdkPayManager.isApkInstalled(Context context, String packageName)
 
 ### demo地址
