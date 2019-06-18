@@ -70,6 +70,29 @@ public class MainActivity extends AppCompatActivity implements BitcvCallBack {
     }
 }
 
+### 类与方法
+#### 类名：SdkPayManager
+
+/*
+  发送数据调起币威支付
+  返回String   sendpay_success  该结果仅作为是否调用成功  
+*/
+SdkPayManager.SendBitcvSdkPay(Context context, BitcvPayBean payBean)
+
+
+/*
+  获取sdk版本号
+  返回String   如1.0.0 
+*/
+SdkPayManager.getSdkVersion(Context context)
+
+
+/*
+  检查是否安装币威钱包
+  返回boolean  
+*/
+SdkPayManager.isApkInstalled(Context context, String packageName)
+
 ### demo地址
 
 https://github.com/bitcv/BitcvpaySDKDemo_Android
