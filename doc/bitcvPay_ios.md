@@ -10,6 +10,10 @@
 		<string>bitcvpay</string>
 	</array>
 
+### 在 URL Types 中配置 URL Scheme
+
+配置的内容有币威提供
+
 ### 增加头文件引用
 #import <BitcvpaySDK/BitcvPayManager.h>
 
