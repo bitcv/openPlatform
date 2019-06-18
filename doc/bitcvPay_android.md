@@ -13,25 +13,30 @@ minSdkVersion 17
 1.下载bitcvsdkpay-release.aar 文件，并放入app/libs文件夹下
 
 2.配置app目录下 build.gradle文件
-android {
-   ...
-   ...
 
-    repositories{
-        flatDir{
-            dirs 'libs'
-        }
-    }
-}
-dependencies {
-   ...
-   ...
-   implementation(name: 'bitcvsdkpay-release', ext: 'aar')
 
-}
+
+    android {
+                ...
+                ...
+
+                repositories{
+                      flatDir{
+                           dirs 'libs'
+                                }
+                            }
+     }
+    dependencies {
+               ...
+               ...
+               implementation(name: 'bitcvsdkpay-release', ext: 'aar')
+  
+     }
 
 3.在AndroidManifest.xml中添加相关权限：
-    <!--币威支付权限-->
+
+
+      <!--币威支付权限-->
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS"/>
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
@@ -41,7 +46,7 @@ dependencies {
 
 5.支付Activity 配置如下
 
-public class MainActivity extends AppCompatActivity implements BitcvCallBack {
+    public class MainActivity extends AppCompatActivity implements BitcvCallBack {
     private BitcvSdkReceiver locationReceiver;
     private BitcvBroadcast broadcast;
       @Override
@@ -68,15 +73,15 @@ public class MainActivity extends AppCompatActivity implements BitcvCallBack {
        //返回code+msg
         tv_result.setText(rs);
     }
-}
+    }
 
 ### 类与方法
 #### 类名：SdkPayManager
+ 
+ /*
 
-/*
-
-   发送数据调起币威支付
-   返回String   sendpay_success  该结果仅作为是否调用成功  
+    发送数据调起币威支付
+    返回String   sendpay_success  该结果仅作为是否调用成功
  */
 
 SdkPayManager.SendBitcvSdkPay(Context context, BitcvPayBean payBean)
