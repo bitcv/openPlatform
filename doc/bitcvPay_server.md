@@ -32,10 +32,14 @@
 {
     "errcode": 0,
     "errmsg": "成功执行",
-    "data": [{
-        "tokenId": 4,
-        "tokenSymbol": "BCV",
-    }],
+    "data": {
+        "tokenList": [
+            {
+                "tokenId": 4,
+                "tokenSymbol": "BCV"
+            }
+        ]
+    }
 }
 ```
 
