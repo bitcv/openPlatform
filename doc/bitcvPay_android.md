@@ -7,7 +7,7 @@ Android studio
 minSdkVersion 17
 
 ### 币威钱包版本支持
-3.5.1以上
+3.5.8及以上
 
 ### 集成步骤
 1.下载bitcvsdkpay-release.aar 文件，并放入app/libs文件夹下
