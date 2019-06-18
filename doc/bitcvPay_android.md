@@ -74,9 +74,10 @@ public class MainActivity extends AppCompatActivity implements BitcvCallBack {
 #### 类名：SdkPayManager
 
 /*
-    发送数据调起币威支付
-    返回String   sendpay_success  该结果仅作为是否调用成功  
-*/
+
+   发送数据调起币威支付
+   返回String   sendpay_success  该结果仅作为是否调用成功  
+ */
 
 SdkPayManager.SendBitcvSdkPay(Context context, BitcvPayBean payBean)
 
