@@ -84,6 +84,8 @@
     <div><a class="share" href="javascript:;" onclick="shareImg()">分享图片</a></div>
     <div><a class="share" href="javascript:;" onclick="downloadImg()">下载图片</a></div>
     <div><a class="share" href="javascript:;" onclick="downloadImg2()">下载图片Base64</a></div>
+
+    <div><a class="share" href="javascript:;" onclick="scanQRCode()">扫一扫</a></div>
   </section>
   <footer class="footer">
     <a class="share" href="javascript:;" onclick="handleShare()">SHARE</a>
@@ -203,6 +205,23 @@ function downloadImg2 (url) {
     success: function (res) {
       // 分享成功（包括复制成功）后的回调函数
       alert('下载成功')
+    }
+  })
+}
+
+// 扫一扫
+function scanQRCode () {
+  if (!isBWConfigSuccess) return alert('币威钱包初始化中，请稍后再试...')
+  bcvWallet.scanQRCode({
+    needResult: 1,
+    success: function (res) {
+      alert('扫描结果' + res.data.resultStr)
+    },
+    fail: function (res) {
+      alert('扫描失败')
+    },
+    cancel: function (res) {
+      alert('用户取消')
     }
   })
 }
