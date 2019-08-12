@@ -70,17 +70,25 @@ bwAPI = {
       configCB._fail = errorFunc
     }
   },
+  // 支付
   requestPayment (parm) {
     invokeCmd(apiNameMap.requestPayment, parm, parm)
   },
+  // 分享
   shareWechat (parm) {
     invokeCmd(apiNameMap.shareWechat, parm, parm)
   },
+  // 跳转 URL
   openUrlScheme (parm) {
     invokeCmd(apiNameMap.openUrlScheme, parm, parm)
   },
+  // 下载
   download (parm) {
     invokeCmd(apiNameMap.download, parm, parm)
+  },
+  // 扫一扫
+  scanQRCode (parm) {
+    invokeCmd(apiNameMap.scanQRCode, parm, parm)
   }
 }
 

@@ -7,7 +7,8 @@ const apiNameMap = {
   requestPayment: 'requestPayment',
   shareWechat: 'shareWechat',
   openUrlScheme: 'openUrlScheme',
-  download: 'download'
+  download: 'download',
+  scanQRCode: 'scanQRCode'
 }
 
 // platform info
