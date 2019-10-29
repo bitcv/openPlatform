@@ -58,8 +58,19 @@
       background-color: #6093EC;
       color: #fff;
     }
-    button {
-      font-size: 20px;
+    .btn-group {
+      margin: 10px 0;
+      padding: 20px;
+      border: solid 1px #ddd;
+    }
+    .btn-text {
+      background-color: #F6F6F6;
+      color: #333;
+    }
+    .title {
+      padding: 6px 0;
+      font-size: 18px;
+      color: #333;
     }
   </style>
 </head>
@@ -68,24 +79,40 @@
   <section class="ctn">
     <img src="./assets/img1.jpg" alt="">
     <img src="./assets/img2.jpg" alt="">
-    <div><a class="share" href="javascript:;" onclick="testOpenUrlScheme('alipays://platformapi/startapp?saId=10000007&qrcode=HTTPS%3A%2F%2FQR.ALIPAY.COM%2FFKX045642YJ71YSZYNX005', 'outside')">SDK跳转支付宝</a></div>
-    <div><a class="share" href="javascript:;" onclick="testOpenUrlScheme('weixin://', 'outside')">SDK跳转微信</a></div>
-    <div><a class="share" href="javascript:;" onclick="testOpenUrl('weixin://')">直接跳转微信</a></div>
-    <div><a class="share" href="javascript:;" onclick="testOpenUrl('alipays://platformapi/startapp?saId=10000007&qrcode=HTTPS%3A%2F%2FQR.ALIPAY.COM%2FFKX045642YJ71YSZYNX005')">直接跳转支付宝转账</a></div>
-    <div><a class="share" href="javascript:;" onclick="testOpenUrlScheme('bw://trantoken', 'inside')">转账</a></div>
-    <div><a class="share" href="javascript:;" onclick="testOpenUrlScheme('bw://userwalletlist', 'inside')">收款</a></div>
-    <div><a class="share" href="javascript:;" onclick="testOpenUrlScheme('bw://depo', 'inside')">余币宝</a></div>
-    <div><a class="share" href="javascript:;" onclick="testOpenUrlScheme('bw://depoBuy?depoId=23', 'inside')">余币宝购买页面</a></div>
-    <div><a class="share" href="javascript:;" onclick="testOpenUrlScheme('bw://redpack', 'inside')">发糖包</a></div>
-    <div><a class="share" href="javascript:;" onclick="testOpenUrlScheme('bw://kyc', 'inside')">KYC</a></div>
-    <div><a class="share" href="javascript:;" onclick="testOpenUrlScheme('bw://siginin', 'inside')">登录</a></div>
-    <div><a class="share" href="tel:+86 13071163773">拨打电话</a></div>
 
-    <div><a class="share" href="javascript:;" onclick="shareImg()">分享图片</a></div>
-    <div><a class="share" href="javascript:;" onclick="downloadImg()">下载图片</a></div>
-    <div><a class="share" href="javascript:;" onclick="downloadImg2()">下载图片Base64</a></div>
+    <div class="btn-group">
+      <h3 class="title">跳转</h3>
+      <div><a class="btn-text" href="javascript:;" onclick="openUrlScheme('alipays://platformapi/startapp?saId=10000007&qrcode=HTTPS%3A%2F%2FQR.ALIPAY.COM%2FFKX045642YJ71YSZYNX005', 'outside')">SDK跳转支付宝</a></div>
+      <div><a class="btn-text" href="javascript:;" onclick="openUrlScheme('weixin://', 'outside')">SDK跳转微信</a></div>
+      <div><a class="btn-text" href="javascript:;" onclick="openUrl('weixin://')">直接跳转微信</a></div>
+      <div><a class="btn-text" href="javascript:;" onclick="openUrl('alipays://platformapi/startapp?saId=10000007&qrcode=HTTPS%3A%2F%2FQR.ALIPAY.COM%2FFKX045642YJ71YSZYNX005')">直接跳转支付宝转账</a></div>
+      <div><a class="btn-text" href="javascript:;" onclick="openUrlScheme('bw://trantoken', 'inside')">转账</a></div>
+      <div><a class="btn-text" href="javascript:;" onclick="openUrlScheme('bw://userwalletlist', 'inside')">收款</a></div>
+      <div><a class="btn-text" href="javascript:;" onclick="openUrlScheme('bw://depo', 'inside')">余币宝</a></div>
+      <div><a class="btn-text" href="javascript:;" onclick="openUrlScheme('bw://depoBuy?depoId=23', 'inside')">余币宝购买页面</a></div>
+      <div><a class="btn-text" href="javascript:;" onclick="openUrlScheme('bw://redpack', 'inside')">发糖包</a></div>
+      <div><a class="btn-text" href="javascript:;" onclick="openUrlScheme('bw://kyc', 'inside')">KYC</a></div>
+      <div><a class="btn-text" href="javascript:;" onclick="openUrlScheme('bw://siginin', 'inside')">登录</a></div>
+      <div><a class="btn-text" href="javascript:;" onclick="openUrlScheme('https://www.baidu.com/', 'outside')">跳转到外部浏览器打开</a></div>
+    </div>
+<div class="btn-group">
+      <h3 class="title">分享、下载</h3>
+      <div><a class="btn-text" href="javascript:;" onclick="shareImg()">分享图片</a></div>
+      <div><a class="btn-text" href="javascript:;" onclick="shareImg2()">分享图片Base64</a></div>
+      <div><a class="btn-text" href="javascript:;" onclick="downloadImg()">下载图片</a></div>
+      <div><a class="btn-text" href="javascript:;" onclick="downloadImg2()">下载图片Base64</a></div>
+      <div><a class="btn-text" href="javascript:;" onclick="mediaShare1()">新版分享 - 图片(第二张是base64格式)</a></div>
+      <div><a class="btn-text" href="javascript:;" onclick="mediaShare2()">新版分享 - 链接和文字</a></div>
+    </div>
 
-    <div><a class="share" href="javascript:;" onclick="scanQRCode()">扫一扫</a></div>
+    <div class="btn-group">
+      <h3 class="title">其他</h3>
+      <div><a class="btn-text" href="tel:+86 13071163773">拨打电话</a></div>
+      <div><a class="btn-text" href="javascript:;" onclick="scanQRCode()">扫一扫</a></div>
+      <div><a class="btn-text" href="javascript:;" onclick="pageInit1()">页面导航配置 - 蓝色底，带有图标按钮</a></div>
+      <div><a class="btn-text" href="javascript:;" onclick="pageInit2()">页面导航配置 - 透明底，带有文字按钮</a></div>
+      <div><a class="btn-text" href="javascript:;" onclick="pageInit3()">页面导航配置 - 重置回默认效果</a></div>
+    </div>
   </section>
   <footer class="footer">
     <a class="share" href="javascript:;" onclick="handleShare()">SHARE</a>
@@ -93,7 +120,6 @@
   </footer>
 
 <script type="text/javascript" src="./bcvwallet.min.js"></script>
-
 <!-- 项目并不依赖 jQuery，这里只是作为请求数据使用 -->
 <script type="text/javascript" src="./assets/jquery-3.3.1.min.js"></script>
 
@@ -170,21 +196,80 @@ function shareImg () {
     }
   })
 }
-
-// test
-function testOpenUrl (url) {
-  window.location.href = url
-}
-function testOpenUrlScheme (url, type) {
-  bcvWallet.openUrlScheme({
-    url: url,
-    type: type,
+function shareImg2 () {
+  if (!isBWConfigSuccess) return alert('币威钱包初始化中，请稍后再试...')
+  bcvWallet.shareWechat({
+    type: 'image',
+    imageUrl: 'data:image/png;base64,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',
     success: function (res) {
-      alert('打开成功')
+      // 分享成功（包括复制成功）后的回调函数
+    }
+  })
+}
+function mediaShare1 () {
+  if (!isBWConfigSuccess) return alert('币威钱包初始化中，请稍后再试...')
+  bcvWallet.mediaShare({
+    shareList: [
+      {
+        type: 'wechatSession',
+        shareType: 'image',
+        imageUrl: 'https://cdn2.ettoday.net/images/1381/d1381774.jpg'
+      },
+      {
+        type: 'wechatTimeLine',
+        shareType: 'image',
+        imageUrl: 'data:image/png;base64,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'
+      },
+      {
+        type: 'downloadImage',
+        imageUrl: 'https://cdn2.ettoday.net/images/1381/d1381774.jpg'
+      }
+    ],
+    success: function (res) {
+      // 分享成功（包括复制成功）后的回调函数
+    }
+  })
+}
+function mediaShare2 () {
+  if (!isBWConfigSuccess) return alert('币威钱包初始化中，请稍后再试...')
+  bcvWallet.mediaShare({
+    shareList: [
+      {
+        type: 'wechatTimeLine',
+        shareType: 'link',
+        linkTitle: '分享到微信朋友圈',
+        linkDesc: '打开链接是下载页',
+        linkUrl: 'https://www.bitcv.app/',
+        linkThumb: 'https://file.ucai.net/fe_activity_invitation_shareIcon.png'
+      },
+      {
+        type: 'wechatSession',
+        shareType: 'link',
+        linkTitle: '分享到微信聊天',
+        linkDesc: '打开链接是下载页',
+        linkUrl: 'https://www.bitcv.app/',
+        linkThumb: 'https://file.ucai.net/fe_activity_invitation_shareIcon.png'
+      },
+      {
+        type: 'copyText',
+        textCopy: '币威钱包真好'
+      },
+      {
+        type: 'browserOpen',
+        url: 'https://www.bitcv.app/'
+      },
+      {
+        type: 'sms',
+        text: '币威钱包真好'
+      }
+    ],
+    success: function (res) {
+      // 分享成功（包括复制成功）后的回调函数
     }
   })
 }
 
+// 下载
 function downloadImg (url) {
   if (!isBWConfigSuccess) return alert('币威钱包初始化中，请稍后再试...')
   bcvWallet.download({
@@ -196,7 +281,6 @@ function downloadImg (url) {
     }
   })
 }
-
 function downloadImg2 (url) {
   if (!isBWConfigSuccess) return alert('币威钱包初始化中，请稍后再试...')
   bcvWallet.download({
@@ -205,6 +289,20 @@ function downloadImg2 (url) {
     success: function (res) {
       // 分享成功（包括复制成功）后的回调函数
       alert('下载成功')
+    }
+  })
+}
+
+// 跳转
+function openUrl (url) {
+  window.location.href = url
+}
+function openUrlScheme (url, type) {
+  bcvWallet.openUrlScheme({
+    url: url,
+    type: type,
+    success: function (res) {
+      alert('打开成功')
     }
   })
 }
@@ -222,6 +320,43 @@ function scanQRCode () {
     },
     cancel: function (res) {
       alert('用户取消')
+    }
+  })
+}
+
+// 页面导航配置
+function pageInit1 () {
+  if (!isBWConfigSuccess) return alert('币威钱包初始化中，请稍后再试...')
+  bcvWallet.pageInit({
+    navbarBgType: 'custom',
+    navbarBgColor: '#6093EC',
+    navbarItemType: 'icon',
+    navbarItemCallback: function () {
+      alert('点击了导航条中按钮')
+    },
+    success: function (res) {
+    }
+  })
+}
+function pageInit2 () {
+  if (!isBWConfigSuccess) return alert('币威钱包初始化中，请稍后再试...')
+  bcvWallet.pageInit({
+    navbarBgType: 'transparent',
+    navbarBgEndColor: '#6093EC',
+    navbarItemType: 'text',
+    navbarItemText: '扫一扫',
+    navbarItemCallback: function () {
+      scanQRCode()
+    },
+    success: function (res) {
+    }
+  })
+}
+function pageInit3 () {
+  // if (!isBWConfigSuccess) return alert('币威钱包初始化中，请稍后再试...')
+  bcvWallet.pageInit({
+    navbarBgType: 'white',
+    success: function (res) {
     }
   })
 }

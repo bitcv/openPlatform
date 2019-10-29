@@ -1,94 +1,96 @@
-import { env, apiNameMap, bwCfg } from './base'
+import { env, apiNameMap, configInfo } from './base'
 import sdkLog from './sdkLog'
-import { setupWebViewJavascriptBridge, invokeCmd } from './utils'
+import { setupWebViewJavascriptBridge, checkConfigAndExecute, callCmd, registerCmd } from './utils'
 
 let bwAPI // API object
-
-let configCB = {
-  _readyCBs: []
-} // config 执行完之后的回调
-let stateInfo = {
-  state: 0, // 0为初始值，配置错误为-1，配置成功为1
-  res: {}
-} // sdk 状态信息
 
 // API
 bwAPI = {
   env,
   config (parm) {
-    bwCfg.updateCfg(parm)
-
-    if (bwCfg.config && bwCfg.config.debug) {
-      sdkLog('币威 JSSDK log 区域: ')
-    }
-
-    // 初始化 bridge
+    configInfo.update('config', parm)
+    sdkLog('币威 JSSDK log 区域: ')
+    // init bridge and config
     setupWebViewJavascriptBridge(function (bridge) {
-      // 初始化 app android 需要
-      if (bridge.init) {
-        bridge.init(function (msg, resCb) {})
-      }
+      // init android doc:https://github.com/hjhrq1991/JsBridge
+      bridge.init && bridge.init(function () {})
 
-      invokeCmd(apiNameMap.config, parm, (function () {
-        configCB._complete = function (res) {
-          stateInfo.state = 1
+      callCmd(apiNameMap.config, {
+        ...parm,
+        success () {
+          configInfo.update('status', 1)
+          configInfo._success && configInfo._success()
+        },
+        fail (res) {
+          configInfo.update('status', -1)
+          configInfo.update('_failRes', res)
+          configInfo._fail && configInfo._fail(res)
         }
-
-        // 带入执行 ready 中的回调，执行后清空 _readyCBs
-        var cbArray = configCB._readyCBs
-        configCB.success = function () {
-          for (var i = 0, len = cbArray.length; i < len; i++) {
-            cbArray[i]()
-          }
-          configCB._readyCBs = []
-        }
-
-        configCB.fail = function (res) {
-          configCB._fail ? configCB._fail(res) : configCB.state = -1
-        }
-
-        configCB.complete = function () {}
-
-        return configCB
-      }()))
+      })
     })
   },
   ready (readyFunc) {
-    if (stateInfo.state != 0) {
-      sdkLog('ready')
-      // config 配置结束
+    if (configInfo.status == 1) {
+      sdkLog('config ready')
       readyFunc()
     } else {
-      // config 配置未成功，将回调 push 到 _readyCBs 函数中，等待回调后执行
-      configCB._readyCBs.push(readyFunc)
+      configInfo.update('_success', readyFunc)
     }
   },
   error (errorFunc) {
-    if (stateInfo.state == -1) {
-      errorFunc(stateInfo.res)
+    if (configInfo.status == -1) {
+      sdkLog('config error')
+      errorFunc(configInfo._failRes)
     } else {
-      configCB._fail = errorFunc
+      configInfo.update('_fail', errorFunc)
     }
   },
+
   // 支付
   requestPayment (parm) {
-    invokeCmd(apiNameMap.requestPayment, parm, parm)
+    checkConfigAndExecute(apiNameMap.requestPayment, parm, function () {
+      callCmd(apiNameMap.requestPayment, parm)
+    })
   },
   // 分享
   shareWechat (parm) {
-    invokeCmd(apiNameMap.shareWechat, parm, parm)
+    checkConfigAndExecute(apiNameMap.shareWechat, parm, function () {
+      callCmd(apiNameMap.shareWechat, parm)
+    })
   },
   // 跳转 URL
   openUrlScheme (parm) {
-    invokeCmd(apiNameMap.openUrlScheme, parm, parm)
+    checkConfigAndExecute(apiNameMap.openUrlScheme, parm, function () {
+      callCmd(apiNameMap.openUrlScheme, parm)
+    })
   },
   // 下载
   download (parm) {
-    invokeCmd(apiNameMap.download, parm, parm)
+    checkConfigAndExecute(apiNameMap.download, parm, function () {
+      callCmd(apiNameMap.download, parm)
+    })
   },
   // 扫一扫
   scanQRCode (parm) {
-    invokeCmd(apiNameMap.scanQRCode, parm, parm)
+    checkConfigAndExecute(apiNameMap.scanQRCode, parm, function () {
+      callCmd(apiNameMap.scanQRCode, parm)
+    })
+  },
+  // 新版分享
+  mediaShare (parm) {
+    checkConfigAndExecute(apiNameMap.mediaShare, parm, function () {
+      callCmd(apiNameMap.mediaShare, parm)
+    })
+  },
+  // 页面 UI 配置
+  pageInit (parm) {
+    checkConfigAndExecute(apiNameMap.pageInit, parm, function () {
+      // 如果导航栏有按钮，注册导航栏按钮响应回调事件
+      if (parm.navbarItemType !== 'none') {
+        registerCmd(apiNameMap.navbarItemCallback, parm.navbarItemCallback)
+      }
+      callCmd(apiNameMap.pageInit, parm)
+    })
   }
 }
 

@@ -1,14 +1,17 @@
 // base variable and method
-let ua = navigator.userAgent.toLowerCase() // navigator
+const ua = navigator.userAgent.toLowerCase() // navigator
 let env = {}
 
 const apiNameMap = {
   config: 'config',
-  requestPayment: 'requestPayment',
-  shareWechat: 'shareWechat',
-  openUrlScheme: 'openUrlScheme',
-  download: 'download',
-  scanQRCode: 'scanQRCode'
+  requestPayment: 'requestPayment', // 支付
+  shareWechat: 'shareWechat', // 分享到微信
+  openUrlScheme: 'openUrlScheme', // 打开链接
+  download: 'download', // 下载图片
+  scanQRCode: 'scanQRCode', // 扫码
+  mediaShare: 'mediaShare', // 新版分享
+  pageInit: 'pageInit', // 页面 UI 配置
+  navbarItemCallback: 'navbarItemCallback' // 页面 UI 配置中导航栏按钮响应事件
 }
 
 // platform info
@@ -32,11 +35,21 @@ if (mat) {
 }
 
 // config information
-let bwCfg = {
-  config: '',
-  updateCfg (cfg) {
-    bwCfg.config = cfg
-  }
+let ConfigManage = function () {
+  this.config = {} // 用户传入的 config 信息
+  this.status = 0 // 状态 { 0: '默认值，未配置', 1: '配置成功', -1: '配置失败' }
+  this._success = null // 初始化时内部成功回调
+  this._fail = null // 初始化时内部失败回调
+  this._failRes = {} // 初始化失败时回调信息
 }
+ConfigManage.prototype.update = function (key, value) {
+  this[key] = value
+}
+let configInfo = new ConfigManage()
 
-export default { ua, env, apiNameMap, bwCfg }
+export default {
+  ua,
+  env,
+  apiNameMap,
+  configInfo
+}

@@ -1,19 +1,22 @@
-import { bwCfg } from './base'
+import { configInfo } from './base'
 
-let logEl // record log
+let logsEl // log wrap
 
 // print log
 function sdkLog (text) {
-  if (bwCfg.config && bwCfg.config.debug) {
-    if (logEl == undefined) {
-      logEl = document.createElement('p')
-      logEl.setAttribute('id', 'bcvWalletLog')
-      logEl.setAttribute('style', 'word-break:break-all;background:#eee;z-index:9999;');
-      logEl.style.fontSize = '14px'
-      document.body.appendChild(logEl)
+  if (configInfo.config && configInfo.config.debug) {
+    if (!logsEl) {
+      logsEl = document.createElement('div')
+      logsEl.setAttribute('id', 'bcvWalletLogs')
+      document.body.appendChild(logsEl)
     }
-    let logText = logEl.innerHTML + text + '----------'
-    logEl.innerHTML = logText
+
+    let log = document.createElement('p')
+    log.setAttribute('id', 'bcvWalletLog')
+    log.setAttribute('style', 'word-break:break-all;background:#eee;z-index:9999;');
+    log.style.fontSize = '14px'
+    log.innerHTML = '- ' + text
+    logsEl.appendChild(log)
   }
 }
 

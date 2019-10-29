@@ -1,27 +1,28 @@
-import { env, bwCfg } from './base'
+import { env, configInfo } from './base'
 import sdkLog from './sdkLog'
 
+// bridge 初始化
 /* global WebViewJavascriptBridge */
-// 注册初始化事件监听
 function setupWebViewJavascriptBridge (callback) {
   if (env.isInBitcvApp && env.appPlatform === 'android') {
     // Android使用
     if (window.WebViewJavascriptBridge) {
-      sdkLog('Android-has bridge')
+      sdkLog('Android - has bridge')
       return callback(window.WebViewJavascriptBridge)
     }
-    sdkLog('Android-no bridge and waiting for bridge ready')
+    sdkLog('Android - no bridge and waiting for bridge ready')
     document.addEventListener('WebViewJavascriptBridgeReady', function () {
-      sdkLog('Android-bridge ready now')
+      sdkLog('Android - bridge ready now')
       callback(window.WebViewJavascriptBridge)
     }, false)
   } else if (env.isInBitcvApp && env.appPlatform === 'ios') {
     // iOS使用
     if (window.WebViewJavascriptBridge) {
-      sdkLog('iOS-has bridge')
+      sdkLog('iOS - has bridge')
       return callback(WebViewJavascriptBridge)
     }
-    sdkLog('iOS-no bridge and waiting for WVJBCallbacks')
+    sdkLog('iOS - no bridge and waiting for WVJBCallbacks')
+    if (window.WebViewJavascriptBridge) { return callback(WebViewJavascriptBridge) }
     if (window.WVJBCallbacks) { return window.WVJBCallbacks.push(callback) }
     window.WVJBCallbacks = [callback]
     var WVJBIframe = document.createElement('iframe')
@@ -35,70 +36,79 @@ function setupWebViewJavascriptBridge (callback) {
   }
 }
 
-// 发送命令给APP
-function invokeCmd (cmd, parm, callback) {
-  sdkLog('开始调用事件')
-  if (window.WebViewJavascriptBridge) {
-    window.WebViewJavascriptBridge.callHandler(cmd, formatParm(parm), function (res) {
-      completeBridgeInteraction(cmd, res, callback)
-    })
+// 检查并执行交互命令
+function checkConfigAndExecute (cmd, parm, func) {
+  console.log(configInfo.config)
+  console.log(configInfo.status)
+  if (configInfo.status === 1) {
+    func()
   } else {
-    console.warn('调用失败，尚未完成config初始化')
-    sdkLog('调用失败，尚未完成config初始化')
+    sdkLog(`${cmd}执行失败，尚未完成config初始化`)
+    console.error(`${cmd}执行失败，尚未完成config初始化`)
     completeBridgeInteraction(cmd, {
       errcode: 1,
       errmsg: 'SDK尚未 config 完成',
       data: {}
-    }, callback)
+    }, parm)
   }
 }
 
-// 注册 APP 回调响应函数
-function completeBridgeInteraction (cmd, res, callback) {
-  sdkLog('接收到事件回调')
-  sdkLog(cmd + '回调数据：' + JSON.stringify(res))
+// 调用 APP 命令
+function callCmd (cmd, parm = {}) {
+  sdkLog(`开始调用事件${cmd}`)
+  sdkLog('调用数据：' + JSON.stringify(parm))
+  window.WebViewJavascriptBridge.callHandler(cmd, formatParm(parm), function (res) {
+    completeBridgeInteraction(cmd, res, parm)
+  })
+}
+
+// 注册命令给 APP 调用
+function registerCmd (cmd, callback = function () {}) {
+  sdkLog(`开始注册事件${cmd}`)
+  window.WebViewJavascriptBridge.registerHandler(cmd, callback)
+}
+
+// 包装 APP 回调响应函数
+function completeBridgeInteraction (cmd, res, parm = {}) {
+  sdkLog(`接收到${cmd}事件回调`)
+  sdkLog('回调数据：' + JSON.stringify(res))
   /*
    * res APP回调过来的参数
-   * errcode 返回的状态码  0:成功  1:失败  2:取消
-   * errmsg 错误信息
-   * data 返回的数据
+   * res.errcode 返回的状态码 { 0: '成功', '1/大于0': '失败', -1: '取消' }
+   * res.errmsg 错误信息
+   * res.data 返回的数据
    */
-  callback = callback || {}
-
-  // 优先执行 sdk 内部回调
-  if (callback._complete) {
-    callback._complete(res)
-    delete callback._complete
-  }
-
   // 执行用户回调
   switch (res.errcode) {
     case '0':
     case 0:
-      callback.success && callback.success(res)
+      parm.success && parm.success(res)
       break
     case '-1':
     case -1:
-      callback.cancel && callback.cancel(res)
+      parm.cancel && parm.cancel(res)
       break
     default:
-      callback.fail && callback.fail(res)
+      parm.fail && parm.fail(res)
   }
-  callback.complete && callback.complete(res)
+  parm.complete && parm.complete(res)
 }
 
 // 格式化传入的参数
 function formatParm (parm) {
-  parm = parm || {}
-  sdkLog('调用数据：' + JSON.stringify(parm))
   parm.config = {
-    appId: bwCfg.config.appId,
+    appId: configInfo.config.appId,
     signType: 'sha1',
-    timestamp: bwCfg.config.timestamp + '',
-    nonceStr: bwCfg.config.nonceStr,
-    signature: bwCfg.config.signature
+    timestamp: configInfo.config.timestamp + '',
+    nonceStr: configInfo.config.nonceStr,
+    signature: configInfo.config.signature
   }
   return parm
 }
 
-export default { setupWebViewJavascriptBridge, invokeCmd, completeBridgeInteraction, formatParm }
+export default {
+  setupWebViewJavascriptBridge,
+  checkConfigAndExecute,
+  callCmd,
+  registerCmd
+}
