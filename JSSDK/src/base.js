@@ -24,12 +24,12 @@ if (ua.indexOf('Android') > -1 || ua.indexOf('Adr') > -1) {
 }
 
 // bitcvwallet info
-let mat = ua.match(/bitcvwallet\/(ios|android)\/(\d+\.\d+\.\d+)(\/lang\/(\w{1,}))?/)
+let mat = ua.match(/bitcvwallet\/(ios|android)\/(\d+\.\d+(\.\d+)?)(\/lang\/(\w{1,}))?/)
 if (mat) {
   env.isInBitcvApp = true
   env.appPlatform = mat[1]
   env.appVersion = mat[2]
-  env.appLanguage = mat[4] ? mat[4] : 'cn'
+  env.appLanguage = mat[5] ? mat[5] : 'cn'
 } else {
   env.isInBitcvApp = false
 }
