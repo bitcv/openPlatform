@@ -1,6 +1,6 @@
 {
   "name": "bcvwallet-jssdk",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "description": "JSSDK for bitcvWallet app",
   "main": "dist/bcvwallet.min.js",
   "scripts": {
